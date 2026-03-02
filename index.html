@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Official Roast Zone 🔥</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fire: #ff4500;
+    --ember: #ff8c00;
+    --smoke: #1a1a2e;
+    --ash: #16213e;
+    --spark: #ffd700;
+    --white: #f5f5f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--smoke); color: var(--white); font-family: 'Nunito', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+  body::before {
+    content: '';
+    position: fixed; bottom: -20px; left: 0; right: 0; height: 200px;
+    background: radial-gradient(ellipse at 50% 100%, #ff450055 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+    animation: flicker 3s ease-in-out infinite alternate;
+  }
+  @keyframes flicker { from { opacity: 0.6; } to { opacity: 1; } }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse { from { text-shadow: 0 0 40px #ff4500, 0 0 80px #ff450066; } to { text-shadow: 0 0 60px #ff4500, 0 0 120px #ff4500aa, 0 0 200px #ff450044; } }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes confettiFall { 0% { transform: translateY(-10px) rotate(0deg); opacity:1; } 100% { transform: translateY(100vh) rotate(720deg); opacity:0; } }
+
+  /* ── PER-PERSON PAGE ANIMATIONS ── */
+  /* Wahida: slides in from the right like she owns the place */
+  @keyframes wahidaEnter { 0%{opacity:0;transform:translateX(80px) scale(0.96);filter:brightness(2.5)} 55%{filter:brightness(1.3)} 100%{opacity:1;transform:translateX(0) scale(1);filter:brightness(1)} }
+  /* Sadia: dreamy slow blur-fade up — soft and emotional */
+  @keyframes sadiaEnter { 0%{opacity:0;transform:translateY(28px);filter:blur(8px) saturate(0)} 100%{opacity:1;transform:translateY(0);filter:blur(0) saturate(1)} }
+  /* Asin: electric zap — fast scale pop with brightness burst */
+  @keyframes asinEnter { 0%{opacity:0;transform:scale(0.8) rotate(-2deg);filter:brightness(4) saturate(0)} 40%{opacity:1;transform:scale(1.06) rotate(1deg);filter:brightness(1.6) saturate(2)} 70%{transform:scale(0.97) rotate(-0.5deg)} 100%{transform:scale(1) rotate(0);filter:brightness(1) saturate(1)} }
+  /* Jennat: bounces up confidently */
+  @keyframes jennatEnter { 0%{opacity:0;transform:translateY(55px) skewY(3deg)} 55%{transform:translateY(-10px) skewY(0)} 75%{transform:translateY(5px)} 100%{opacity:1;transform:translateY(0)} }
+  /* Moytri: drops in from top like food landing */
+  @keyframes moytriEnter { 0%{opacity:0;transform:translateY(-60px) scale(1.06)} 55%{transform:translateY(10px) scale(0.97)} 80%{transform:translateY(-5px) scale(1.01)} 100%{opacity:1;transform:translateY(0) scale(1)} }
+  /* Priya: bouncy giggle — wiggles in like a laugh */
+  @keyframes priyaEnter { 0%{opacity:0;transform:scale(0.7) rotate(-4deg)} 40%{opacity:1;transform:scale(1.08) rotate(2deg)} 65%{transform:scale(0.95) rotate(-1.5deg)} 82%{transform:scale(1.03) rotate(1deg)} 100%{transform:scale(1) rotate(0)} }
+  /* Group: zooms in as an ensemble */
+  @keyframes groupEnter { 0%{opacity:0;transform:scale(0.88)} 65%{transform:scale(1.03)} 100%{opacity:1;transform:scale(1)} }
+  /* Card stagger reveal */
+  @keyframes cardReveal { from{opacity:0;transform:translateX(-28px)} to{opacity:1;transform:translateX(0)} }
+  /* Emoji bounce */
+  @keyframes emojiBounce { 0%{transform:scale(0) rotate(-15deg)} 60%{transform:scale(1.2) rotate(5deg)} 80%{transform:scale(0.9) rotate(-2deg)} 100%{transform:scale(1) rotate(0)} }
+  /* Flash wipe */
+  @keyframes flashWipe { 0%{opacity:0.7} 100%{opacity:0;pointer-events:none} }
+
+  /* ── NAV ── */
+  nav {
+    background: #0d0d1a; border-bottom: 3px solid var(--fire);
+    padding: 0 16px; position: sticky; top: 0; z-index: 500;
+    display: flex; align-items: center; gap: 2px;
+  }
+  nav .logo {
+    font-family: 'Bebas Neue', cursive; font-size: 1.55rem; color: var(--fire);
+    padding: 10px 0; margin-right: 10px; letter-spacing: 2px;
+    text-shadow: 0 0 20px #ff4500aa; flex-shrink: 0; cursor: pointer;
+  }
+  .nav-links { display: flex; gap: 2px; flex-wrap: wrap; align-items: center; flex: 1; }
+  nav button {
+    background: none; border: none; color: #aaa;
+    font-family: 'Nunito', sans-serif; font-size: 0.78rem; font-weight: 700;
+    padding: 7px 8px; cursor: pointer; border-radius: 6px;
+    transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;
+  }
+  nav button:hover, nav button.active { background: var(--fire); color: white; }
+  button:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; }
+
+  /* Hamburger */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; margin-left: auto; flex-shrink: 0; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: #aaa; border-radius: 2px; transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--fire); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--fire); }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; background: #0d0d1af8;
+    z-index: 400; flex-direction: column; align-items: center;
+    justify-content: center; gap: 10px; animation: fadeIn 0.2s ease;
+    overflow-y: auto; padding: 60px 20px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu button { font-size: 1.1rem; padding: 13px 36px; border-radius: 12px; border: 2px solid #333; width: 250px; text-align: center; }
+  .mobile-menu button:hover { border-color: var(--fire); }
+  .mobile-close { position: fixed; top: 20px; right: 20px; background: none; border: none; color: #aaa; font-size: 2rem; cursor: pointer; }
+
+  @media (max-width: 720px) { .nav-links { display: none; } .hamburger { display: flex; } }
+
+  /* ── PAGES ── */
+  .page { display: none; padding: 40px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+  .page.active { display: block; animation: fadeIn 0.4s ease; }
+
+  /* Per-person page entrance */
+  #page-wahida.active  { animation: wahidaEnter 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+  #page-sadia.active   { animation: sadiaEnter  0.75s ease both; }
+  #page-asin.active    { animation: asinEnter   0.5s  cubic-bezier(0.34,1.2,0.64,1) both; }
+  #page-jennat.active  { animation: jennatEnter 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+  #page-moytri.active  { animation: moytriEnter 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+  #page-priya.active   { animation: priyaEnter  0.6s  cubic-bezier(0.34,1.56,0.64,1) both; }
+  #page-group.active   { animation: groupEnter  0.5s  cubic-bezier(0.34,1.2,0.64,1) both; }
+  #page-crossroast.active { animation: groupEnter 0.5s cubic-bezier(0.34,1.2,0.64,1) both; }
+
+  /* Emoji bounce on every roast page */
+  #page-wahida.active .big-emoji,
+  #page-sadia.active .big-emoji,
+  #page-asin.active .big-emoji,
+  #page-jennat.active .big-emoji,
+  #page-moytri.active .big-emoji,
+  #page-priya.active .big-emoji,
+  #page-group.active .big-emoji { display:block; animation: emojiBounce 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s both; }
+
+  /* Staggered roast card reveals */
+  .roast-card { opacity:0; animation: cardReveal 0.4s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .page.active .roast-card:nth-child(1) { animation-delay:0.18s; }
+  .page.active .roast-card:nth-child(2) { animation-delay:0.28s; }
+  .page.active .roast-card:nth-child(3) { animation-delay:0.38s; }
+  .page.active .roast-card:nth-child(4) { animation-delay:0.48s; }
+  .page.active .roast-card:nth-child(5) { animation-delay:0.58s; }
+  .page.active .roast-card:nth-child(6) { animation-delay:0.68s; }
+
+  /* Flash overlay element */
+  .page-flash { position:fixed; inset:0; pointer-events:none; z-index:450; animation: flashWipe 0.45s ease forwards; }
+
+  /* ── HOME ── */
+  .hero { text-align: center; padding: 60px 20px; }
+  .hero h1 { font-family: 'Bebas Neue', cursive; font-size: clamp(3rem,10vw,7rem); color: var(--fire); text-shadow: 0 0 40px #ff4500, 0 0 80px #ff450066; line-height: 1; animation: pulse 2s ease-in-out infinite alternate; }
+  .hero p { font-size: 1.1rem; color: #ccc; margin-top: 14px; font-style: italic; }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; margin-top: 26px; flex-wrap: wrap; }
+  .btn-primary { background: var(--fire); border: none; color: white; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem; padding: 12px 24px; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { transform: scale(1.05); box-shadow: 0 6px 20px #ff450066; }
+  .btn-secondary { background: #1e1e3a; border: 2px solid var(--spark); color: var(--spark); font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem; padding: 12px 24px; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { background: var(--spark); color: #000; }
+
+  .squad-cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 14px; margin-top: 44px; }
+  .squad-card { background: linear-gradient(135deg,#1e1e3a,#16213e); border: 2px solid #333; border-radius: 16px; padding: 24px 12px; text-align: center; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; }
+  .squad-card::before { content:''; position:absolute; bottom:0;left:0;right:0;height:3px;background:var(--fire);transform:scaleX(0);transition:transform 0.3s; }
+  .squad-card:hover { transform: translateY(-8px); border-color: var(--fire); box-shadow: 0 20px 40px #ff450033; }
+  .squad-card:hover::before { transform: scaleX(1); }
+  .squad-card .emoji { font-size: 2.8rem; }
+  .squad-card .name { font-family: 'Permanent Marker', cursive; font-size: 1.1rem; color: var(--spark); margin-top: 8px; }
+  .squad-card .title { font-size: 0.72rem; color: #777; margin-top: 4px; }
+
+  /* ── RANDOM ROAST TOAST ── */
+  #random-toast {
+    position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: linear-gradient(135deg,#1e1e3a,#0d0d20); border: 2px solid var(--fire);
+    border-radius: 16px; padding: 20px 26px; max-width: 420px; width: 90%;
+    text-align: center; z-index: 300; opacity: 0; pointer-events: none; transition: all 0.4s ease;
+  }
+  #random-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  #random-toast .toast-name { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; color: var(--fire); font-weight: 900; margin-bottom: 8px; }
+  #random-toast .toast-roast { font-size: 0.93rem; color: #ddd; line-height: 1.6; }
+  #random-toast .toast-close { margin-top: 12px; background: none; border: 1px solid #444; color: #777; font-size: 0.78rem; padding: 4px 12px; border-radius: 20px; cursor: pointer; font-family: 'Nunito', sans-serif; }
+  #random-toast .toast-close:hover { border-color: var(--fire); color: var(--fire); }
+
+  /* ── ROAST PAGES ── */
+  .roast-header { text-align: center; margin-bottom: 38px; }
+  .roast-header .big-emoji { font-size: 5rem; }
+  .roast-header h2 { font-family: 'Bebas Neue', cursive; font-size: clamp(2.5rem,8vw,5rem); color: var(--spark); text-shadow: 2px 2px 0 var(--fire); letter-spacing: 3px; }
+  .roast-header .subtitle { color: #aaa; font-style: italic; margin-top: 4px; }
+  .roast-cards { display: grid; gap: 14px; }
+  .roast-card { background: linear-gradient(135deg,#1e1e3a 0%,#0d0d20 100%); border-left: 4px solid var(--fire); border-radius: 0 12px 12px 0; padding: 20px 24px; position: relative; transition: transform 0.2s; }
+  .roast-card:hover { transform: translateX(6px); }
+  .roast-card .roast-num { font-family: 'Bebas Neue',cursive; font-size: 2.5rem; color: #ff450033; position: absolute; right: 16px; top: 10px; line-height: 1; pointer-events: none; }
+  .roast-card p { font-size: 1rem; line-height: 1.7; color: #ddd; padding-right: 40px; }
+  .roast-card .label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; color: var(--fire); font-weight: 900; margin-bottom: 8px; }
+
+  /* ── PRANKS ── */
+  .pranks-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(255px,1fr)); gap: 18px; margin-top: 20px; }
+  .prank-card { background: linear-gradient(160deg,#1e1e3a,#0d1a0d); border: 2px solid #2a4a2a; border-radius: 16px; padding: 22px; transition: all 0.3s; }
+  .prank-card:hover { border-color: #44ff44; transform: scale(1.02); box-shadow: 0 10px 30px #00ff0022; }
+  .prank-card .prank-emoji { font-size: 2.3rem; margin-bottom: 10px; }
+  .prank-card h3 { font-family: 'Permanent Marker',cursive; font-size: 1.05rem; color: #44ff88; margin-bottom: 8px; }
+  .prank-card p { font-size: 0.88rem; color: #bbb; line-height: 1.6; }
+  .prank-card .difficulty { margin-top: 12px; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: var(--spark); }
+  .prank-card .victim { margin-top: 4px; font-size: 0.78rem; color: #ff6644; font-style: italic; }
+
+  /* ── HALL OF SHAME ── */
+  .shame-item { background: #0d0d1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 18px; margin-bottom: 14px; display: flex; align-items: flex-start; gap: 14px; transition: all 0.2s; }
+  .shame-item:hover { border-color: var(--fire); background: #15152a; }
+  .shame-item .shame-emoji { font-size: 2rem; flex-shrink: 0; }
+  .shame-item h3 { font-family: 'Permanent Marker',cursive; color: var(--spark); font-size: 1rem; margin-bottom: 5px; }
+  .shame-item p { color: #bbb; font-size: 0.91rem; line-height: 1.55; }
+  .shame-item .badge { display: inline-block; background: var(--fire); color: white; font-size: 0.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; padding: 3px 8px; border-radius: 20px; margin-bottom: 6px; }
+
+  /* ── POLLS ── */
+  .poll-section { max-width: 600px; margin: 0 auto; }
+  .poll-q { background: #1e1e3a; border-radius: 12px; padding: 22px; margin-bottom: 18px; }
+  .poll-q h3 { font-family: 'Permanent Marker',cursive; font-size: 1.05rem; color: var(--spark); margin-bottom: 14px; }
+  .poll-opt { background: #0d0d20; border: 2px solid #2a2a2a; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; cursor: pointer; transition: all 0.2s; font-size: 0.91rem; position: relative; overflow: hidden; user-select: none; }
+  .poll-opt:not(.voted):hover { border-color: var(--fire); color: white; }
+  .poll-opt.voted { border-color: var(--spark); cursor: default; }
+  .poll-opt .bar { position: absolute; left: 0; top: 0; bottom: 0; background: #ff450020; transition: width 0.5s ease; z-index: 0; }
+  .poll-opt.voted .bar { background: #ffd70015; }
+  .poll-opt .opt-text { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 8px; }
+  .poll-opt .pct { color: var(--spark); font-weight: 900; flex-shrink: 0; }
+
+  /* ── SHARED ── */
+  .section-title { font-family: 'Bebas Neue',cursive; font-size: 2.3rem; color: var(--fire); letter-spacing: 3px; margin-bottom: 20px; border-bottom: 2px solid #252535; padding-bottom: 8px; }
+  .back-btn { display: inline-flex; align-items: center; gap: 8px; background: #1e1e3a; border: 2px solid var(--fire); color: var(--fire); font-family: 'Nunito',sans-serif; font-weight: 900; font-size: 0.88rem; padding: 8px 16px; border-radius: 8px; cursor: pointer; margin-bottom: 28px; transition: all 0.2s; }
+  .back-btn:hover { background: var(--fire); color: white; }
+
+  footer { text-align: center; padding: 36px 20px; color: #3a3a4a; font-size: 0.8rem; position: relative; z-index: 1; border-top: 1px solid #1e1e3a; margin-top: 20px; }
+  footer span { color: var(--fire); }
+
+  /* ── SCROLL TO TOP ── */
+  .scroll-top { position: fixed; bottom: 28px; right: 28px; background: var(--fire); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; z-index: 200; transition: all 0.3s; box-shadow: 0 4px 20px #ff450066; opacity: 0; pointer-events: none; }
+  .scroll-top.visible { opacity: 1; pointer-events: auto; }
+  .scroll-top:hover { transform: scale(1.12); }
+
+  /* ── DAY PREDICTION OVERLAYS ── */
+  @keyframes dpSlideIn { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes dpShake { 0%{transform:translateX(0)} 15%{transform:translateX(-12px) rotate(-1deg)} 30%{transform:translateX(12px) rotate(1deg)} 45%{transform:translateX(-8px)} 60%{transform:translateX(8px)} 75%{transform:translateX(-4px)} 90%{transform:translateX(4px)} 100%{transform:translateX(0)} }
+  @keyframes dpPop { 0%{transform:scale(0.5) rotate(-10deg);opacity:0} 60%{transform:scale(1.2) rotate(4deg)} 80%{transform:scale(0.92) rotate(-2deg)} 100%{transform:scale(1) rotate(0);opacity:1} }
+  @keyframes dpWobble { 0%{transform:scale(1)} 25%{transform:scale(1.15) rotate(-5deg)} 50%{transform:scale(1.1) rotate(5deg)} 75%{transform:scale(1.05) rotate(-3deg)} 100%{transform:scale(1) rotate(0)} }
+  @keyframes dpStepIn { from{opacity:0;transform:translateX(-20px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes dpBarPulse { 0%,100%{filter:brightness(1)} 50%{filter:brightness(1.4)} }
+  @keyframes dpGlitch { 0%{clip-path:inset(0 0 100% 0)} 20%{clip-path:inset(0 0 60% 0)} 40%{clip-path:inset(20% 0 40% 0)} 60%{clip-path:inset(40% 0 20% 0)} 80%{clip-path:inset(60% 0 0 0)} 100%{clip-path:inset(100% 0 0 0)} }
+  @keyframes resultPop { 0%{transform:scale(0.3) rotate(-15deg);opacity:0} 50%{transform:scale(1.1) rotate(3deg)} 75%{transform:scale(0.95) rotate(-1deg)} 100%{transform:scale(1) rotate(0);opacity:1} }
+  @keyframes wrongShake { 0%,100%{transform:translateX(0) rotate(0)} 20%{transform:translateX(-18px) rotate(-2deg)} 40%{transform:translateX(18px) rotate(2deg)} 60%{transform:translateX(-12px) rotate(-1deg)} 80%{transform:translateX(12px) rotate(1deg)} }
+  @keyframes correctFloat { 0%{transform:translateY(0)} 50%{transform:translateY(-12px)} 100%{transform:translateY(0)} }
+
+  #dp-loading {
+    display: none; position: fixed; inset: 0;
+    background: linear-gradient(135deg, #06060f 0%, #0d0d1a 50%, #080818 100%);
+    z-index: 999; flex-direction: column; align-items: center; justify-content: center;
+    backdrop-filter: blur(10px);
+  }
+  #dp-loading.active { display: flex; animation: dpSlideIn 0.3s ease both; }
+  #dp-loading.shake { animation: dpShake 0.6s ease; }
+
+  #dp-load-emoji {
+    font-size: 5.5rem; line-height: 1;
+    filter: drop-shadow(0 0 20px #ff450088);
+    transition: all 0.2s;
+  }
+  #dp-load-emoji.pop { animation: dpPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+  #dp-load-emoji.wobble { animation: dpWobble 0.5s ease both; }
+
+  #dp-load-step {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(1rem,3vw,1.3rem);
+    color: var(--spark);
+    margin-top: 22px;
+    max-width: 380px;
+    text-align: center;
+    line-height: 1.5;
+    min-height: 60px;
+    animation: dpStepIn 0.3s ease both;
+  }
+
+  #dp-load-bar-wrap {
+    width: 300px; height: 10px;
+    background: #1a1a2e;
+    border-radius: 10px;
+    margin-top: 24px;
+    overflow: hidden;
+    border: 1px solid #2a2a4a;
+    box-shadow: 0 0 10px #00000088;
+  }
+  #dp-load-bar {
+    height: 100%; width: 0%;
+    border-radius: 10px;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    animation: dpBarPulse 1s ease infinite;
+  }
+  #dp-load-bar.wrong-bar { background: linear-gradient(90deg, #ff2200, #ff6600, #ff4500); }
+  #dp-load-bar.right-bar { background: linear-gradient(90deg, #00cc66, #44ff88, #ffd700); }
+
+  #dp-load-pct {
+    color: #555; font-size: 0.8rem; margin-top: 10px;
+    font-family: 'Nunito', sans-serif; letter-spacing: 1px;
+  }
+
+  #dp-load-subtext {
+    font-size: 0.75rem; color: #333; margin-top: 6px;
+    font-style: italic; min-height: 18px;
+    transition: opacity 0.3s;
+  }
+
+  #dp-result { display: none; position: fixed; inset: 0; background: #0d0d1af8; z-index: 1000; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px; }
+  #dp-result.active { display: flex; }
+  #dp-result-emoji { animation: resultPop 0.6s cubic-bezier(0.34,1.56,0.64,1) both; }
+  #dp-result.wrong #dp-result-emoji { animation: wrongShake 0.6s ease 0.3s both, resultPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+  #dp-result.correct #dp-result-emoji { animation: resultPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both, correctFloat 2s ease 0.6s infinite; }
+
+  /* ── CONFETTI ── */
+  .confetti-piece { position: fixed; top: -10px; z-index: 1001; pointer-events: none; animation: confettiFall linear forwards; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="showPage('home')">🔥 ROAST ZONE</div>
+  <div class="nav-links">
+    <button data-page="home" onclick="showPage('home')" class="active">Home</button>
+    <button data-page="howto" onclick="showPage('howto')" style="color:#44ff88;">❓ How To</button>
+    <button data-page="wahida" onclick="showPage('wahida')">Wahida</button>
+    <button data-page="sadia" onclick="showPage('sadia')">Sadia</button>
+    <button data-page="asin" onclick="showPage('asin')">Asin</button>
+    <button data-page="jennat" onclick="showPage('jennat')">Jennat</button>
+    <button data-page="moytri" onclick="showPage('moytri')">Moytri</button>
+    <button data-page="priya" onclick="showPage('priya')">Priya</button>
+    <button data-page="group" onclick="showPage('group')">👥 Squad</button>
+    <button data-page="crossroast" onclick="showPage('crossroast')">⚔️ Cross Roast</button>
+    <button data-page="pranks" onclick="showPage('pranks')">🎭 Pranks</button>
+    <button data-page="shame" onclick="showPage('shame')">😳 Shame</button>
+    <button data-page="poll" onclick="showPage('poll')">📊 Polls</button>
+    <button data-page="daypredict" onclick="showPage('daypredict')">🔮 Tomorrow?</button>
+  </div>
+  <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Open menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+  <button class="mobile-close" onclick="toggleMenu()" aria-label="Close menu">✕</button>
+  <button data-page="home" onclick="showPage('home');toggleMenu()">🏠 Home</button>
+  <button data-page="howto" onclick="showPage('howto');toggleMenu()">❓ How To Use</button>
+  <button data-page="wahida" onclick="showPage('wahida');toggleMenu()">👑 Wahida</button>
+  <button data-page="sadia" onclick="showPage('sadia');toggleMenu()">🌈 Sadia</button>
+  <button data-page="asin" onclick="showPage('asin');toggleMenu()">⚡ Asin</button>
+  <button data-page="jennat" onclick="showPage('jennat');toggleMenu()">🎤 Jennat</button>
+  <button data-page="moytri" onclick="showPage('moytri');toggleMenu()">🍕 Moytri</button>
+  <button data-page="priya" onclick="showPage('priya');toggleMenu()">🌸 Priya</button>
+  <button data-page="group" onclick="showPage('group');toggleMenu()">👥 Squad Roast</button>
+  <button data-page="crossroast" onclick="showPage('crossroast');toggleMenu()">⚔️ Cross Roast</button>
+  <button data-page="pranks" onclick="showPage('pranks');toggleMenu()">🎭 Pranks</button>
+  <button data-page="shame" onclick="showPage('shame');toggleMenu()">😳 Hall of Shame</button>
+  <button data-page="poll" onclick="showPage('poll');toggleMenu()">📊 Polls</button>
+  <button data-page="daypredict" onclick="showPage('daypredict');toggleMenu()">🔮 What Day is Tomorrow?</button>
+</div>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <h1>THE ROAST ZONE</h1>
+    <p>Where friendships go to be lovingly destroyed 💀</p>
+    <p style="margin-top:8px;font-size:0.82rem;color:#444;">100% roasted with 100% love. Probably.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showRandomRoast()">🎲 Random Roast</button>
+      <button class="btn-secondary" onclick="showPage('group')">👥 Squad Roast</button>
+      <button class="btn-secondary" style="border-color:#44ff88;color:#44ff88;" onclick="showPage('howto')">❓ How To Use</button>
+    </div>
+  </div>
+  <div class="squad-cards">
+    <div class="squad-card" onclick="showPage('wahida')" role="button" tabindex="0"><div class="emoji">👑</div><div class="name">Wahida</div><div class="title">The Main Character</div></div>
+    <div class="squad-card" onclick="showPage('sadia')" role="button" tabindex="0"><div class="emoji">🌈</div><div class="name">Sadia</div><div class="title">Feels Everything, Misses Nothing</div></div>
+    <div class="squad-card" onclick="showPage('asin')" role="button" tabindex="0"><div class="emoji">⚡</div><div class="name">Asin</div><div class="title">The Human Cheat Code</div></div>
+    <div class="squad-card" onclick="showPage('jennat')" role="button" tabindex="0"><div class="emoji">🎤</div><div class="name">Jennat</div><div class="title">The Unsolicited Advisor</div></div>
+    <div class="squad-card" onclick="showPage('moytri')" role="button" tabindex="0"><div class="emoji">🍕</div><div class="name">Moytri</div><div class="title">The Food Critic</div></div>
+    <div class="squad-card" onclick="showPage('priya')" role="button" tabindex="0"><div class="emoji">🌸</div><div class="name">Priya</div><div class="title">Tiny, Cute & Dangerously Funny</div></div>
+  </div>
+</div>
+
+<!-- WAHIDA -->
+<div id="page-wahida" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="roast-header"><div class="big-emoji">👑</div><h2>WAHIDA</h2><div class="subtitle">"The Main Character of every story, even yours"</div></div>
+  <div class="roast-cards">
+    <div class="roast-card"><div class="label">🔥 Roast #1</div><div class="roast-num">1</div><p>Wahida walks into a room and somehow makes your problem about her journey. You came to vent about your day and left feeling like a supporting character in her memoir.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #2</div><div class="roast-num">2</div><p>She takes 47 selfies to get "the candid one." Girl, candid means you weren't trying. The hashtag should be #staged not #nofilter.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #3</div><div class="roast-num">3</div><p>Wahida gives unsolicited life advice with the confidence of someone who has it all figured out — which is incredible considering she texts "I'm on my way" while still in bed.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #4</div><div class="roast-num">4</div><p>She says "I'm not like other girls" and yet has seen every episode of every reality TV show ever made. Twice.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #5</div><div class="roast-num">5</div><p>Wahida's autobiography title: "It's Not My Fault But Also Everyone Should Learn From This." Available in the Self-Help aisle.</p></div>
+  </div>
+</div>
+
+<!-- SADIA -->
+<div id="page-sadia" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="roast-header"><div class="big-emoji">🌈</div><h2>SADIA</h2><div class="subtitle">"The most real one in the room — and the room knows it"</div></div>
+
+  <div style="background:linear-gradient(135deg,#0d1a2a,#1a0d2e);border:2px solid #4488ff;border-radius:20px;padding:24px;margin-bottom:24px;text-align:center;">
+    <div style="font-size:1.1rem;color:#4488ff;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">✨ SADIA APPRECIATION NOTICE ✨</div>
+    <p style="color:#aac4ff;font-size:0.95rem;line-height:1.8;">Yes, she feels things deeply. Yes, she goes quiet sometimes. But she's also the one who notices when YOU'RE not okay before you even say a word. That's not sadness — that's a superpower most people never develop.</p>
+  </div>
+
+  <div class="roast-cards">
+    <div class="roast-card" style="border-left-color:#4488ff;"><div class="label" style="color:#4488ff;">💙 Truth #1</div><div class="roast-num">1</div><p>Sadia feels everything at full volume while the rest of us are still on mute. That's not a flaw — that's emotional HD. Most people spend years in therapy trying to get there.</p></div>
+    <div class="roast-card" style="border-left-color:#aa44ff;"><div class="label" style="color:#aa44ff;">💜 Truth #2</div><div class="roast-num">2</div><p>She doesn't need to be on her phone 24/7 because she's actually present. Revolutionary concept. Some people could learn something. (Looking at everyone else in this group.)</p></div>
+    <div class="roast-card" style="border-left-color:#4488ff;"><div class="label" style="color:#4488ff;">💙 Truth #3</div><div class="roast-num">3</div><p>When Sadia is happy — actually properly happy — it lights up everything around her. It's rare and that's exactly what makes it special. She doesn't hand out smiles for free. When you get one, you earned it.</p></div>
+    <div class="roast-card" style="border-left-color:#aa44ff;"><div class="label" style="color:#aa44ff;">💜 Truth #4</div><div class="roast-num">4</div><p>Sadia's the one people call at 3 AM not because she has the answers, but because she actually listens. Completely. Without checking her phone. Without waiting for her turn to speak. That is rarer than it sounds.</p></div>
+    <div class="roast-card" style="border-left-color:#ff69b4;"><div class="label" style="color:#ff69b4;">🌸 Truth #5</div><div class="roast-num">5</div><p>The world needs more people who feel things this genuinely. Keep going, Sadia. The depth that makes you feel heavy sometimes? That's the same thing that makes you unforgettable. 💙</p></div>
+  </div>
+</div>
+
+<!-- ASIN -->
+<div id="page-asin" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="roast-header"><div class="big-emoji">⚡🧠</div><h2>ASIN</h2><div class="subtitle">"The human cheat code — extrovert, genius, unstoppable"</div></div>
+
+  <div style="background:linear-gradient(135deg,#1a1a0a,#0a1a0a);border:2px solid var(--spark);border-radius:20px;padding:24px;margin-bottom:24px;text-align:center;">
+    <div style="font-size:1.1rem;color:var(--spark);font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">🏆 ASIN HALL OF FAME ENTRY 🏆</div>
+    <p style="color:#ffe88a;font-size:0.95rem;line-height:1.8;">Officially certified as the group's walking encyclopedia, social butterfly, and the only person capable of knowing what you need before you ask. Scientists are baffled. We're just proud to know her.</p>
+  </div>
+
+  <div class="roast-cards">
+    <div class="roast-card" style="border-left-color:var(--spark);"><div class="label" style="color:var(--spark);">⚡ Legend #1</div><div class="roast-num">1</div><p>Asin walks into any room and immediately raises the energy of everyone in it. Not metaphorically — literally. There are studies. She is a human battery pack and everyone secretly plugs in.</p></div>
+    <div class="roast-card" style="border-left-color:#44ff88;"><div class="label" style="color:#44ff88;">🌟 Legend #2</div><div class="roast-num">2</div><p>She knows something about everything. History, science, that random fact you needed at exactly the right moment — Asin has it. She doesn't Google it after the conversation. She just knew. It was already there.</p></div>
+    <div class="roast-card" style="border-left-color:var(--spark);"><div class="label" style="color:var(--spark);">⚡ Legend #3</div><div class="roast-num">3</div><p>Asin can talk to anyone on the planet. The shyest person becomes comfortable. The quietest room comes alive. She has this gift of making people feel like the most interesting version of themselves. It's genuinely rare.</p></div>
+    <div class="roast-card" style="border-left-color:#44ff88;"><div class="label" style="color:#44ff88;">🌟 Legend #4</div><div class="roast-num">4</div><p>She gets MORE energised the longer the hangout goes. At hour one, she's great. At hour five, she's somehow better. At hour nine, she's organising an afterparty. The rest of us need a three-day recovery. She's already planning next weekend.</p></div>
+    <div class="roast-card" style="border-left-color:#ffd700;"><div class="label" style="color:#ffd700;">🏆 Legend #5</div><div class="roast-num">5</div><p>Here's the thing about Asin: she uses all that knowledge and all that energy entirely for good. She hypes people up, she shares what she knows, she includes everyone. Being this talented and this generous about it? Honestly iconic. ⚡</p></div>
+  </div>
+</div>
+
+<!-- JENNAT -->
+<div id="page-jennat" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="roast-header"><div class="big-emoji">🎤</div><h2>JENNAT</h2><div class="subtitle">"Opinions: unlimited. Filter: unavailable"</div></div>
+  <div class="roast-cards">
+    <div class="roast-card"><div class="label">🔥 Roast #1</div><div class="roast-num">1</div><p>Jennat will hear half your sentence and already have a full solution, three alternatives, and a concerned follow-up question. She plays therapist in every group chat.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #2</div><div class="roast-num">2</div><p>She starts stories with "Okay so basically—" and 45 minutes later you're learning about a situation from a friend of a friend in 2019. No one is safe from the lore.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #3</div><div class="roast-num">3</div><p>Jennat says "I'm not trying to be rude BUT—" and then absolutely is. The "but" is load-bearing. Everything before it is legally required to mean nothing.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #4</div><div class="roast-num">4</div><p>She has a strong opinion on your outfit, your order, your life choices, and the way you said "bye" on that phone call. And she WILL bring it up.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #5</div><div class="roast-num">5</div><p>Jennat's debate mode activates when nobody is debating. She'll argue a position, win, and then argue the other side just to keep it alive. A menace. We love her.</p></div>
+  </div>
+</div>
+
+<!-- MOYTRI -->
+<div id="page-moytri" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="roast-header"><div class="big-emoji">🍕</div><h2>MOYTRI</h2><div class="subtitle">"Food comes first. You come second. Barely."</div></div>
+  <div class="roast-cards">
+    <div class="roast-card"><div class="label">🔥 Roast #1</div><div class="roast-num">1</div><p>Moytri's love language is food, and her love language for enemies is also food — just bad food. She will remember forever that you took her last fry. There is no statute of limitations.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #2</div><div class="roast-num">2</div><p>She says "I'm not hungry" before every meal and then eats more than anyone at the table. The disclaimer is purely ceremonial at this point.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #3</div><div class="roast-num">3</div><p>Moytri photographs every meal before eating it with a seriousness usually reserved for crime scene documentation. The food goes cold. She doesn't care. The lighting was perfect.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #4</div><div class="roast-num">4</div><p>She has strong feelings about how you cook. She will demonstrate the correct way. She will eat the result and say "not bad" — from Moytri, that means you've been blessed.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #5</div><div class="roast-num">5</div><p>Moytri is first to suggest going out to eat and last to decide what she wants. By the time she orders, everyone has finished. The server knows. The server has accepted it.</p></div>
+  </div>
+</div>
+
+<!-- PRIYA -->
+<div id="page-priya" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="roast-header">
+    <div class="big-emoji">🌸</div>
+    <h2>PRIYA</h2>
+    <div class="subtitle">"Pocket-sized chaos. Maximum cuteness. Zero fear."</div>
+  </div>
+  <div class="roast-cards">
+    <div class="roast-card"><div class="label">🔥 Roast #1</div><div class="roast-num">1</div><p>Priya is so small that she once stood next to a 5-year-old and the kid asked her what grade she was in. She answered confidently. Nobody corrected her.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #2</div><div class="roast-num">2</div><p>She laughs at absolutely everything. A leaf fell off a tree. Priya lost it for four minutes. Someone said the word "spoon." Three more minutes. She is a one-woman laugh track and we genuinely can't imagine life without it.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #3</div><div class="roast-num">3</div><p>Priya is childish in the best possible way — she still gets genuinely excited about things. Theme parks. Stickers. Getting the window seat. While the rest of us pretend to be above joy, Priya is out here actually living.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #4</div><div class="roast-num">4</div><p>She's cute and she knows it. Uses it strategically. Has gotten out of trouble, out of queues, and out of bill-splitting using nothing but a smile and a head tilt. A certified menace operating at maximum adorability.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #5</div><div class="roast-num">5</div><p>Priya's height means she gets lost in crowds, uses everyone as armrests without asking, and once disappeared at a concert for 20 minutes. She was fine. She'd found a better spot near the front. She is built different.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #6</div><div class="roast-num">6</div><p>Here's the truth: Priya could walk into any room, laugh at something nobody else found funny, and somehow make everyone join in. That laugh is contagious, that energy is irreplaceable, and the squad is genuinely funnier because she exists. 🌸</p></div>
+  </div>
+</div>
+
+<!-- GROUP ROAST -->
+<div id="page-group" class="page">
+  <div class="roast-header"><div class="big-emoji">👥💀</div><h2>THE SQUAD ROAST</h2><div class="subtitle">"Individually dangerous. Together, a catastrophe."</div></div>
+  <div style="background:linear-gradient(135deg,#1e1e3a,#0d0d20);border:2px solid var(--fire);border-radius:20px;padding:26px;margin-bottom:24px;text-align:center;">
+    <div style="font-size:1.3rem;margin-bottom:10px;">🔥 THE OFFICIAL SQUAD CERTIFICATE 🔥</div>
+    <p style="color:#aaa;font-size:0.93rem;line-height:1.8;">This certifies that <span style="color:var(--spark);font-weight:900;">Wahida, Sadia, Asin, Jennat, Moytri & Priya</span> constitute the most chaotic, loving, unreliable, and deeply unhinged friend group in recorded history. Evaluated and found to be <span style="color:var(--fire);font-weight:900;">simultaneously too much and never enough.</span></p>
+  </div>
+  <div class="roast-cards">
+    <div class="roast-card"><div class="label">🔥 Group Roast #1</div><div class="roast-num">1</div><p>As a collective, this squad has planned approximately 47 group outings. They have successfully executed 3. One of those was an accident. They consider this a good track record.</p></div>
+    <div class="roast-card"><div class="label">🔥 Group Roast #2</div><div class="roast-num">2</div><p>The group chat has 3,000+ unread messages, a pinned message nobody remembers pinning, and at least one running joke that made sense in 2022 and means nothing now. Everyone still uses it daily.</p></div>
+    <div class="roast-card"><div class="label">🔥 Group Roast #3</div><div class="roast-num">3</div><p>Collectively, someone has dramatically said "I'm done with drama" then immediately started drama a combined 94 times. The number continues to climb.</p></div>
+    <div class="roast-card"><div class="label">🔥 Group Roast #4</div><div class="roast-num">4</div><p>As a unit, they take 25 minutes to decide where to eat, order food that arrives cold because the debate took so long, then immediately begin debating where to eat next time. This is their ecosystem.</p></div>
+    <div class="roast-card"><div class="label">🔥 Group Roast #5</div><div class="roast-num">5</div><p>This group gives advice that contradicts itself in real time. Wahida says go left, Jennat explains why right is correct, Asin has already Googled it and cited three sources, Sadia stares into the distance, Moytri has already eaten, and Priya is laughing at something unrelated. Nobody goes anywhere.</p></div>
+    <div class="roast-card"><div class="label">🔥 Group Roast #6</div><div class="roast-num">6</div><p>Despite everything — cancelled plans, unsolicited opinions, 3 AM voice notes, stolen fries, 47-minute explanations — this is the group nobody is leaving. Beautiful or deeply concerning. Probably both.</p></div>
+  </div>
+  <div style="margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(188px,1fr));gap:12px;">
+    <div style="background:#1e1e3a;border-radius:12px;padding:16px;text-align:center;border:1px solid #2a2a3a;"><div style="font-size:1.8rem;">🏆</div><div style="font-family:'Permanent Marker',cursive;color:var(--spark);margin-top:6px;font-size:0.9rem;">Most Likely To Be Late</div><div style="color:#555;font-size:0.8rem;margin-top:4px;">All of them. Simultaneously.</div></div>
+    <div style="background:#1e1e3a;border-radius:12px;padding:16px;text-align:center;border:1px solid #2a2a3a;"><div style="font-size:1.8rem;">🎭</div><div style="font-family:'Permanent Marker',cursive;color:var(--spark);margin-top:6px;font-size:0.9rem;">Most Dramatic Exit</div><div style="color:#555;font-size:0.8rem;margin-top:4px;">Every week. New record holder weekly.</div></div>
+    <div style="background:#1e1e3a;border-radius:12px;padding:16px;text-align:center;border:1px solid #2a2a3a;"><div style="font-size:1.8rem;">💬</div><div style="font-family:'Permanent Marker',cursive;color:var(--spark);margin-top:6px;font-size:0.9rem;">Longest Argument</div><div style="color:#555;font-size:0.8rem;margin-top:4px;">3 days. About a gif. No resolution.</div></div>
+    <div style="background:#1e1e3a;border-radius:12px;padding:16px;text-align:center;border:1px solid #2a2a3a;"><div style="font-size:1.8rem;">❤️</div><div style="font-family:'Permanent Marker',cursive;color:var(--spark);margin-top:6px;font-size:0.9rem;">Most Likely To Show Up</div><div style="color:#555;font-size:0.8rem;margin-top:4px;">When it actually matters. Every time.</div></div>
+    <div style="background:#1e1e3a;border-radius:12px;padding:16px;text-align:center;border:1px solid #2a2a3a;"><div style="font-size:1.8rem;">🌸</div><div style="font-family:'Permanent Marker',cursive;color:var(--spark);margin-top:6px;font-size:0.9rem;">Best Unintentional Comedian</div><div style="color:#555;font-size:0.8rem;margin-top:4px;">Priya. Not even close. She doesn't try.</div></div>
+  </div>
+</div>
+
+<!-- CROSS ROASTS -->
+<div id="page-crossroast" class="page">
+  <div class="section-title">🔥 WHO SAID WHAT</div>
+  <p style="color:#777;margin-bottom:26px;font-style:italic;">Every person roasting every other person. Lovingly. Mostly.</p>
+
+  <!-- WAHIDA ROASTS OTHERS -->
+  <div style="margin-bottom:36px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="font-size:2.5rem;">👑</div>
+      <div>
+        <div style="font-family:'Permanent Marker',cursive;color:var(--spark);font-size:1.3rem;">Wahida says...</div>
+        <div style="color:#555;font-size:0.8rem;font-style:italic;">with the confidence of someone who is definitely also guilty of this</div>
+      </div>
+    </div>
+    <div class="roast-cards">
+      <div class="roast-card"><div class="label" style="color:#ff69b4;">👑 → 🌈 About Sadia</div><p>Sadia feels everything deeply, which is beautiful — but she also felt deeply betrayed when I was 8 minutes late. Eight minutes. She wrote a paragraph about it in the group chat. Eight minutes.</p></div>
+      <div class="roast-card"><div class="label" style="color:#ff69b4;">👑 → ⚡ About Asin</div><p>Asin knows everything and will absolutely tell you. I made one slightly incorrect statement about history and she sent me a three-paragraph correction with footnotes. In a casual conversation. At a birthday party.</p></div>
+      <div class="roast-card"><div class="label" style="color:#ff69b4;">👑 → 🎤 About Jennat</div><p>Jennat gives advice nobody asked for and is somehow always right. It's deeply annoying. I followed her advice once and my life improved. I refuse to tell her this.</p></div>
+      <div class="roast-card"><div class="label" style="color:#ff69b4;">👑 → 🍕 About Moytri</div><p>Moytri says "let's share" and then guards her plate like it contains state secrets. I reached for a chip once. Once. The look she gave me still visits me in dreams.</p></div>
+      <div class="roast-card"><div class="label" style="color:#ff69b4;">👑 → 🌸 About Priya</div><p>Priya laughed at my story before I finished telling it. Not because it was funny yet — she just laughed. Then I laughed. Then we both forgot what I was saying. This is every conversation with her.</p></div>
+    </div>
+  </div>
+
+  <!-- SADIA ROASTS OTHERS -->
+  <div style="margin-bottom:36px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="font-size:2.5rem;">🌈</div>
+      <div>
+        <div style="font-family:'Permanent Marker',cursive;color:#4488ff;font-size:1.3rem;">Sadia says...</div>
+        <div style="color:#555;font-size:0.8rem;font-style:italic;">quietly, but she means every word</div>
+      </div>
+    </div>
+    <div class="roast-cards">
+      <div class="roast-card" style="border-left-color:#4488ff;"><div class="label" style="color:#4488ff;">🌈 → 👑 About Wahida</div><p>Wahida texted me "I'm on my way" at 2pm. She arrived at 3:47pm. When I pointed this out she said "time is a construct." I didn't respond. I didn't have to. We both knew.</p></div>
+      <div class="roast-card" style="border-left-color:#4488ff;"><div class="label" style="color:#4488ff;">🌈 → ⚡ About Asin</div><p>Asin made friends with three strangers, a security guard, and someone's grandmother on the way to meet us. She was 25 minutes late and arrived with four new contacts. I didn't say anything. What would be the point.</p></div>
+      <div class="roast-card" style="border-left-color:#4488ff;"><div class="label" style="color:#4488ff;">🌈 → 🎤 About Jennat</div><p>I made one small comment. Jennat said "okay but here's the thing—" and what followed was twelve minutes I will never get back. I now think twice before making any comment around her. Small comments especially.</p></div>
+      <div class="roast-card" style="border-left-color:#4488ff;"><div class="label" style="color:#4488ff;">🌈 → 🍕 About Moytri</div><p>Moytri ordered "just a little something." It was not a little something. It was an event. She finished before everyone else and then watched us eat with the energy of someone reviewing a film they've already seen.</p></div>
+      <div class="roast-card" style="border-left-color:#4488ff;"><div class="label" style="color:#4488ff;">🌈 → 🌸 About Priya</div><p>Priya is tiny and acts like this is everyone else's problem. She uses my shoulder as an armrest. She does not ask. She has never asked. I don't think it has ever occurred to her to ask.</p></div>
+    </div>
+  </div>
+
+  <!-- ASIN ROASTS OTHERS -->
+  <div style="margin-bottom:36px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="font-size:2.5rem;">⚡</div>
+      <div>
+        <div style="font-family:'Permanent Marker',cursive;color:var(--spark);font-size:1.3rem;">Asin says...</div>
+        <div style="color:#555;font-size:0.8rem;font-style:italic;">and she has sources to back every single one of these up</div>
+      </div>
+    </div>
+    <div class="roast-cards">
+      <div class="roast-card" style="border-left-color:#ffd700;"><div class="label" style="color:#ffd700;">⚡ → 👑 About Wahida</div><p>Wahida once told me I was wrong about something I studied for two years. She was not right. I showed her the evidence. She said "well that's just your perspective." I have thought about this every day since.</p></div>
+      <div class="roast-card" style="border-left-color:#ffd700;"><div class="label" style="color:#ffd700;">⚡ → 🌈 About Sadia</div><p>Sadia doesn't use her phone much and yet always knows what's going on before anyone else. I have no explanation for this. It defies everything I know about information flow. I've accepted it as a phenomenon.</p></div>
+      <div class="roast-card" style="border-left-color:#ffd700;"><div class="label" style="color:#ffd700;">⚡ → 🎤 About Jennat</div><p>Jennat is the only person I've met who can out-talk me. I want to be clear: I talk a lot. I know many things. And yet Jennat finishes my sentences and then adds three more I hadn't thought of. Statistically remarkable.</p></div>
+      <div class="roast-card" style="border-left-color:#ffd700;"><div class="label" style="color:#ffd700;">⚡ → 🍕 About Moytri</div><p>Moytri's food knowledge is genuinely impressive and I respect it. She can identify a dish by smell from across a restaurant. This is a skill. She uses it exclusively to decide if someone else's order is better than hers. It usually is.</p></div>
+      <div class="roast-card" style="border-left-color:#ffd700;"><div class="label" style="color:#ffd700;">⚡ → 🌸 About Priya</div><p>Priya laughed so hard at something I said that she had to sit down. I have a PhD-level knowledge base. My best material lands differently with Priya than with any academic audience. She laughed at "Tuesday." I'm still thinking about that.</p></div>
+    </div>
+  </div>
+
+  <!-- JENNAT ROASTS OTHERS -->
+  <div style="margin-bottom:36px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="font-size:2.5rem;">🎤</div>
+      <div>
+        <div style="font-family:'Permanent Marker',cursive;color:var(--ember);font-size:1.3rem;">Jennat says...</div>
+        <div style="color:#555;font-size:0.8rem;font-style:italic;">and she has a follow-up point, and another one, and one more</div>
+      </div>
+    </div>
+    <div class="roast-cards">
+      <div class="roast-card" style="border-left-color:var(--ember);"><div class="label" style="color:var(--ember);">🎤 → 👑 About Wahida</div><p>Wahida gives advice like she invented common sense. She told me — unprompted — how I should reorganise my week. I did not ask. I was eating. She sat down across from me specifically to tell me this. I reorganised my week. It helped. I'm furious.</p></div>
+      <div class="roast-card" style="border-left-color:var(--ember);"><div class="label" style="color:var(--ember);">🎤 → 🌈 About Sadia</div><p>Sadia gives one-word responses that somehow say everything. I sent her a paragraph explaining a situation. She replied "yikes." And the thing is — yikes was correct. Completely. Devastatingly correct. One word.</p></div>
+      <div class="roast-card" style="border-left-color:var(--ember);"><div class="label" style="color:var(--ember);">🎤 → ⚡ About Asin</div><p>Asin walked into a room and within four minutes had talked to everyone and knew everyone's name, job, and at least one personal detail. I've been working on my social skills for years. She does it like breathing. I won't say how this makes me feel.</p></div>
+      <div class="roast-card" style="border-left-color:var(--ember);"><div class="label" style="color:var(--ember);">🎤 → 🍕 About Moytri</div><p>Moytri challenged my restaurant recommendation. I had researched it. I had notes. She said "I don't think so" based on nothing but instinct. The food was bad. She was right. I'm not discussing this further.</p></div>
+      <div class="roast-card" style="border-left-color:var(--ember);"><div class="label" style="color:var(--ember);">🎤 → 🌸 About Priya</div><p>I was mid-sentence making a very valid point when Priya started laughing. Not at the point — she hadn't heard it yet. She just found something funny in her own head. The conversation never recovered. My point was good.</p></div>
+    </div>
+  </div>
+
+  <!-- MOYTRI ROASTS OTHERS -->
+  <div style="margin-bottom:36px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="font-size:2.5rem;">🍕</div>
+      <div>
+        <div style="font-family:'Permanent Marker',cursive;color:#ff6644;font-size:1.3rem;">Moytri says...</div>
+        <div style="color:#555;font-size:0.8rem;font-style:italic;">between bites, without looking up</div>
+      </div>
+    </div>
+    <div class="roast-cards">
+      <div class="roast-card" style="border-left-color:#ff6644;"><div class="label" style="color:#ff6644;">🍕 → 👑 About Wahida</div><p>Wahida chose the restaurant last time. It was a place with "aesthetic" food. The portions were decorative. I left hungry. I will remember this when it is her birthday. I am already planning the restaurant.</p></div>
+      <div class="roast-card" style="border-left-color:#ff6644;"><div class="label" style="color:#ff6644;">🍕 → 🌈 About Sadia</div><p>Sadia eats slowly and thoughtfully and actually tastes her food. She says things like "you can really taste the spice blend." Meanwhile I have finished and am deciding what to have next. We experience food differently. Neither of us is wrong.</p></div>
+      <div class="roast-card" style="border-left-color:#ff6644;"><div class="label" style="color:#ff6644;">🍕 → ⚡ About Asin</div><p>Asin spent 20 minutes talking to the restaurant owner and found out the entire family history, the secret recipe origin, and got us a free dessert through sheer personality. I respect this. I could never do this. I tried once. I just asked if the food was fresh. They said yes. Nothing else happened.</p></div>
+      <div class="roast-card" style="border-left-color:#ff6644;"><div class="label" style="color:#ff6644;">🍕 → 🎤 About Jennat</div><p>Jennat debated me about what to order for eleven minutes. Eleven minutes I could have spent eating. She ordered the same thing she always orders. As she always does. As she always will.</p></div>
+      <div class="roast-card" style="border-left-color:#ff6644;"><div class="label" style="color:#ff6644;">🍕 → 🌸 About Priya</div><p>Priya eats like a child at a birthday party. Whatever looks most colourful, whatever has the most toppings, whatever the tallest thing on the table is. She has never ordered anything sensible. The food is always good though. I will not explain why this annoys me.</p></div>
+    </div>
+  </div>
+
+  <!-- PRIYA ROASTS OTHERS -->
+  <div style="margin-bottom:36px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="font-size:2.5rem;">🌸</div>
+      <div>
+        <div style="font-family:'Permanent Marker',cursive;color:#ff69b4;font-size:1.3rem;">Priya says...</div>
+        <div style="color:#555;font-size:0.8rem;font-style:italic;">while giggling, which somehow makes it hit harder</div>
+      </div>
+    </div>
+    <div class="roast-cards">
+      <div class="roast-card" style="border-left-color:#ff69b4;"><div class="label" style="color:#ff69b4;">🌸 → 👑 About Wahida</div><p>Wahida is the main character and she knows it. I told her she looked nice once. She said "I know." Not thank you. Just "I know." And the thing is — she did look nice. But still. "I know." 😂</p></div>
+      <div class="roast-card" style="border-left-color:#ff69b4;"><div class="label" style="color:#ff69b4;">🌸 → 🌈 About Sadia</div><p>Sadia looked at me once when I was being chaotic and did not say a single word. Just looked. And somehow I felt guilty about things I hadn't even done yet. She has this power. It should be studied.</p></div>
+      <div class="roast-card" style="border-left-color:#ff69b4;"><div class="label" style="color:#ff69b4;">🌸 → ⚡ About Asin</div><p>Asin told me a fact about penguins and it was so interesting I laughed for two minutes. She then told me four more penguin facts. I don't know why I started laughing. I couldn't stop. She was still talking. I was just gone. 😂</p></div>
+      <div class="roast-card" style="border-left-color:#ff69b4;"><div class="label" style="color:#ff69b4;">🌸 → 🎤 About Jennat</div><p>Jennat was explaining something very serious and very long and I made eye contact with her for too long and started laughing. She stopped. She looked at me. She continued. More seriously. I laughed more. This is not my fault. Her face is funny when she's serious.</p></div>
+      <div class="roast-card" style="border-left-color:#ff69b4;"><div class="label" style="color:#ff69b4;">🌸 → 🍕 About Moytri</div><p>Moytri gave me a look when I reached for her food. I had not touched anything. I had not moved. I was simply looking in that direction. She saw me looking and gave me the look. I looked away. I was not hungry anyway. 😂</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW TO USE -->
+<div id="page-howto" class="page">
+  <div class="section-title">📖 HOW THIS WORKS</div>
+  <p style="color:#777;margin-bottom:28px;font-style:italic;">So you found the site. Welcome. Here's everything you need to know.</p>
+
+  <!-- Quick nav cards -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:36px;">
+
+    <div style="background:linear-gradient(135deg,#1e1e3a,#0d0d20);border:2px solid var(--fire);border-radius:18px;padding:22px;cursor:pointer;transition:all 0.3s;" onclick="showPage('wahida')" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 40px #ff450033'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-size:2rem;margin-bottom:8px;">👑🌈⚡🎤🍕🌸</div>
+      <div style="font-family:'Permanent Marker',cursive;color:var(--spark);font-size:1.05rem;margin-bottom:6px;">Personal Roast Pages</div>
+      <p style="color:#aaa;font-size:0.85rem;line-height:1.6;">Each person has their own roast page. Click their name in the nav or their card on the home screen. 5–6 roasts each, crafted specifically for them. Read yours. Try not to cry.</p>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#1e1e3a,#0d0d20);border:2px solid #aa44ff;border-radius:18px;padding:22px;cursor:pointer;transition:all 0.3s;" onclick="showPage('crossroast')" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 40px #aa44ff33'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-size:2rem;margin-bottom:8px;">⚔️</div>
+      <div style="font-family:'Permanent Marker',cursive;color:#aa44ff;font-size:1.05rem;margin-bottom:6px;">Cross Roast</div>
+      <p style="color:#aaa;font-size:0.85rem;line-height:1.6;">Every person roasting every other person. 30 roasts total. Find out what Wahida really thinks about Jennat, what Priya thinks about everyone, and why Moytri is still upset about the food.</p>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#1e1e3a,#0d0d20);border:2px solid var(--spark);border-radius:18px;padding:22px;cursor:pointer;transition:all 0.3s;" onclick="showPage('group')" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 40px #ffd70033'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-size:2rem;margin-bottom:8px;">👥</div>
+      <div style="font-family:'Permanent Marker',cursive;color:var(--spark);font-size:1.05rem;margin-bottom:6px;">Squad Roast</div>
+      <p style="color:#aaa;font-size:0.85rem;line-height:1.6;">The whole group gets roasted together. 6 group roasts + individual squad awards. Find out who officially holds the title of "Most Likely To Be Late" and other important certifications.</p>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#1e1e3a,#0d0d20);border:2px solid #44ff88;border-radius:18px;padding:22px;cursor:pointer;transition:all 0.3s;" onclick="showPage('pranks')" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 40px #44ff8833'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-size:2rem;margin-bottom:8px;">🎭</div>
+      <div style="font-family:'Permanent Marker',cursive;color:#44ff88;font-size:1.05rem;margin-bottom:6px;">Prank Playbook</div>
+      <p style="color:#aaa;font-size:0.85rem;line-height:1.6;">9 pranks with difficulty ratings and who to use them on. Each prank has a recommended victim from the squad. Use responsibly. Or don't. That's between you and your friendships.</p>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#1e1e3a,#0d0d20);border:2px solid var(--fire);border-radius:18px;padding:22px;cursor:pointer;transition:all 0.3s;" onclick="showPage('shame')" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 40px #ff450033'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-size:2rem;margin-bottom:8px;">😳</div>
+      <div style="font-family:'Permanent Marker',cursive;color:var(--fire);font-size:1.05rem;margin-bottom:6px;">Hall of Shame</div>
+      <p style="color:#aaa;font-size:0.85rem;line-height:1.6;">Officially documented crimes against the friend group. Real incidents. Real consequences. Real shame. Each squad member has at least one entry. Yes, including you.</p>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#1e1e3a,#0d0d20);border:2px solid #4488ff;border-radius:18px;padding:22px;cursor:pointer;transition:all 0.3s;" onclick="showPage('poll')" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 40px #4488ff33'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-size:2rem;margin-bottom:8px;">📊</div>
+      <div style="font-family:'Permanent Marker',cursive;color:#4488ff;font-size:1.05rem;margin-bottom:6px;">Polls</div>
+      <p style="color:#aaa;font-size:0.85rem;line-height:1.6;">5 totally scientific polls. Vote once per question. Results update live. Questions include: who would survive longest in the wild, who would win a debate about nothing, and more.</p>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#1e1e3a,#0d0d20);border:2px solid var(--spark);border-radius:18px;padding:22px;cursor:pointer;transition:all 0.3s;" onclick="showPage('daypredict')" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 40px #ffd70033'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-size:2rem;margin-bottom:8px;">🔮</div>
+      <div style="font-family:'Permanent Marker',cursive;color:var(--spark);font-size:1.05rem;margin-bottom:6px;">What Day is Tomorrow?</div>
+      <p style="color:#aaa;font-size:0.85rem;line-height:1.6;">The hardest quiz known to humanity. Seven options. One correct answer. An AI opponent. A dramatic 12-step loading sequence. Confetti if you win. Shame if you don't. Try it.</p>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#1e1e3a,#0d0d20);border:2px solid var(--fire);border-radius:18px;padding:22px;">
+      <div style="font-size:2rem;margin-bottom:8px;">🎲</div>
+      <div style="font-family:'Permanent Marker',cursive;color:var(--fire);font-size:1.05rem;margin-bottom:6px;">Random Roast Button</div>
+      <p style="color:#aaa;font-size:0.85rem;line-height:1.6;">On the home page, hit the <span style="color:var(--fire);font-weight:900;">🎲 Random Roast</span> button. A random roast about a random squad member pops up. Hit it again for another. Great for when you want chaos immediately.</p>
+    </div>
+
+  </div>
+
+  <!-- Tips -->
+  <div style="background:linear-gradient(135deg,#0d1a0d,#0d0d1a);border:2px solid #333;border-radius:18px;padding:26px;margin-bottom:24px;">
+    <div style="font-family:'Permanent Marker',cursive;color:var(--spark);font-size:1.1rem;margin-bottom:16px;">💡 Tips & Secrets</div>
+    <div style="display:grid;gap:12px;">
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="font-size:1.3rem;flex-shrink:0;">📱</div>
+        <div style="color:#bbb;font-size:0.88rem;line-height:1.6;"><span style="color:white;font-weight:900;">Works on mobile.</span> The nav collapses into a menu button on small screens. Tap the ☰ icon in the top right to open it.</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="font-size:1.3rem;flex-shrink:0;">🔄</div>
+        <div style="color:#bbb;font-size:0.88rem;line-height:1.6;"><span style="color:white;font-weight:900;">Every page has a unique entrance animation.</span> Each person slides, pops, bounces or fades in differently based on their personality. Wahida dramatically enters from the right. Sadia drifts in softly. Asin zaps in.</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="font-size:1.3rem;flex-shrink:0;">🏆</div>
+        <div style="color:#bbb;font-size:0.88rem;line-height:1.6;"><span style="color:white;font-weight:900;">Get the day prediction right</span> and you get confetti. Get it wrong and the screen shakes in secondhand embarrassment. Try both. It's worth it.</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="font-size:1.3rem;flex-shrink:0;">⬆️</div>
+        <div style="color:#bbb;font-size:0.88rem;line-height:1.6;"><span style="color:white;font-weight:900;">Scroll down on any long page</span> and a ↑ button appears in the bottom right to jump back to the top.</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="font-size:1.3rem;flex-shrink:0;">🔥</div>
+        <div style="color:#bbb;font-size:0.88rem;line-height:1.6;"><span style="color:white;font-weight:900;">Made with love by Abhijit.</span> All roasts are fictional and also extremely true. No friendships were harmed. Probably.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start button -->
+  <div style="text-align:center;padding:20px 0;">
+    <div style="font-family:'Permanent Marker',cursive;color:#555;font-size:0.9rem;margin-bottom:16px;">Ready? Pick someone to roast first:</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+      <button class="btn-primary" onclick="showPage('wahida')">👑 Wahida</button>
+      <button class="btn-primary" style="background:#4488ff;" onclick="showPage('sadia')">🌈 Sadia</button>
+      <button class="btn-primary" style="background:#cc9900;" onclick="showPage('asin')">⚡ Asin</button>
+      <button class="btn-primary" style="background:#ff8800;" onclick="showPage('jennat')">🎤 Jennat</button>
+      <button class="btn-primary" style="background:#cc4422;" onclick="showPage('moytri')">🍕 Moytri</button>
+      <button class="btn-primary" style="background:#cc44aa;" onclick="showPage('priya')">🌸 Priya</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRANKS -->
+<div id="page-pranks" class="page">
+  <div class="section-title">🎭 PRANK PLAYBOOK</div>
+  <p style="color:#777;margin-bottom:22px;font-style:italic;">Use responsibly. Or don't. That's between you and your friendships.</p>
+  <div class="pranks-grid">
+    <div class="prank-card"><div class="prank-emoji">📸</div><h3>The Screenshot Trap</h3><p>Screenshot their most embarrassing old photo, set it as their wallpaper when they're not looking. Bonus: also set it as their contact photo for everyone in their phone.</p><div class="difficulty">Difficulty: ⭐⭐ Easy</div><div class="victim">Best victim: Wahida (she cares most about her image 😂)</div></div>
+    <div class="prank-card"><div class="prank-emoji">⏰</div><h3>The Alarm Farm</h3><p>Secretly set 47 alarms starting at 3 AM, each 5 minutes apart, labeled with increasingly passive-aggressive messages like "still sleeping?" and "okay seriously wake up."</p><div class="difficulty">Difficulty: ⭐⭐ Easy</div><div class="victim">Best victim: Asin (she'll sleep through the first 20 anyway)</div></div>
+    <div class="prank-card"><div class="prank-emoji">🧀</div><h3>The Food Swap</h3><p>Replace the filling in their favourite snacks with something equally edible but deeply unexpected. Oreos with toothpaste frosting. Chips replaced with crackers.</p><div class="difficulty">Difficulty: ⭐⭐⭐ Medium</div><div class="victim">Best victim: Moytri (this is a personal attack and she will know it)</div></div>
+    <div class="prank-card"><div class="prank-emoji">💬</div><h3>The Fake Notification</h3><p>Create a fake screenshot that says their biggest crush left them "on read." Watch the spiral in real time. Reveal before they do anything rash. Maybe.</p><div class="difficulty">Difficulty: ⭐⭐ Easy</div><div class="victim">Best victim: Sadia (she'll immediately screenshot it and analyse it)</div></div>
+    <div class="prank-card"><div class="prank-emoji">🗣️</div><h3>The Echo Chamber</h3><p>Agree with literally everything they say for an entire day. No pushback. Watch them get increasingly suspicious and eventually beg you to argue with them.</p><div class="difficulty">Difficulty: ⭐⭐⭐ Medium</div><div class="victim">Best victim: Jennat (she literally cannot function without debate)</div></div>
+    <div class="prank-card"><div class="prank-emoji">🖥️</div><h3>The Screenshot Desktop</h3><p>Take a screenshot of their computer desktop, set it as wallpaper, hide all actual icons. Watch them click frantically on a picture of their desktop going absolutely nowhere.</p><div class="difficulty">Difficulty: ⭐⭐⭐ Medium</div><div class="victim">Best victim: Anyone. Everyone falls for this.</div></div>
+    <div class="prank-card"><div class="prank-emoji">📦</div><h3>The Endless Box</h3><p>Wrap a gift inside a box inside a box inside a box (minimum 7 layers). The final prize? A single gummy bear. Or a gift card. Depends how much you love them.</p><div class="difficulty">Difficulty: ⭐ Very Easy</div><div class="victim">Best victim: Priya — she'll giggle through every single layer and still be surprised at the end 😂</div></div>
+    <div class="prank-card"><div class="prank-emoji">🔊</div><h3>The Volume Creep</h3><p>Every time they leave their seat, turn their phone volume up one notch. By the time they get a call in public, it'll be at maximum. Their reaction will be priceless.</p><div class="difficulty">Difficulty: ⭐ Very Easy</div><div class="victim">Best victim: Whoever checks their phone the most. Hi Sadia.</div></div>
+    <div class="prank-card"><div class="prank-emoji">🪞</div><h3>The Motivational Mirror</h3><p>Cover their bathroom mirror with sticky notes of extremely specific "motivational quotes" written about their personal habits. They'll wake up to: "Today is a great day to reply to texts."</p><div class="difficulty">Difficulty: ⭐⭐ Easy</div><div class="victim">Best victim: Whoever needs the most self-reflection (all of them)</div></div>
+  </div>
+</div>
+
+<!-- HALL OF SHAME -->
+<div id="page-shame" class="page">
+  <div class="section-title">😳 HALL OF SHAME</div>
+  <p style="color:#777;margin-bottom:22px;font-style:italic;">These crimes against the friend group have been officially documented.</p>
+  <div class="shame-item"><div class="shame-emoji">👑</div><div><div class="badge">Wahida</div><h3>The Phantom RSVP</h3><p>Said "yes absolutely" to three group plans in one month. Attended zero. Each time had a new creative reason involving the weather, her cat, and a vague "situation." She was tagged in all the photos.</p></div></div>
+  <div class="shame-item"><div class="shame-emoji">📱</div><div><div class="badge">Sadia</div><h3>The Read Receipts Incident</h3><p>Left an important question on read for 6 hours. Was seen posting 12 Instagram stories during that time. When confronted, said "sorry I was busy." The group still has questions.</p></div></div>
+  <div class="shame-item"><div class="shame-emoji">⚡</div><div><div class="badge">Asin</div><h3>The Unsolicited Fact Check</h3><p>Someone made a casual, completely harmless statement at dinner. Asin interrupted, cited two sources, gave historical context, and concluded with a correction so thorough the person apologised for being wrong in their own memory. Nobody asked. Everyone learned. One person cried a little.</p></div></div>
+  <div class="shame-item"><div class="shame-emoji">🎤</div><div><div class="badge">Jennat</div><h3>The 47-Minute Explanation</h3><p>Was asked a yes or no question. Delivered a 47-minute explanation covering the history, her feelings, and finally a "yes, but actually let me explain why." The original asker had forgotten the question.</p></div></div>
+  <div class="shame-item"><div class="shame-emoji">🍕</div><div><div class="badge">Moytri</div><h3>The Shared Plate Situation</h3><p>Ordered "just a little bit of everything to share." Protected her portion with a fork barrier and a warning glance that communicated "sharing is theoretical." She tracked every hand the whole way.</p></div></div>
+  <div class="shame-item"><div class="shame-emoji">🏆</div><div><div class="badge">The Whole Squad</div><h3>The Group Chat That Never Decided</h3><p>One question: "Where should we eat?" — sent at 3 PM. 87 messages later at 7 PM, the group decided nothing, ate separately, and posted individual food photos to the same chat. A masterpiece.</p></div></div>
+  <div class="shame-item"><div class="shame-emoji">🌸</div><div><div class="badge">Priya</div><h3>The Giggle That Derailed Everything</h3><p>The group was having a serious conversation. A very important, mature, adult discussion. Priya made eye contact with someone, started giggling for no reason, and within 45 seconds the entire group had forgotten what they were talking about. This has happened fourteen times. Nobody is mad.</p></div></div>
+</div>
+
+<!-- POLLS -->
+<div id="page-poll" class="page">
+  <div class="section-title">📊 TOTALLY SCIENTIFIC POLLS</div>
+  <p style="color:#777;margin-bottom:26px;font-style:italic;">Results are binding. Legally not really. Emotionally absolutely.</p>
+  <div class="poll-section" id="polls-container"></div>
+</div>
+
+<!-- DAY PREDICTION -->
+<div id="page-daypredict" class="page">
+  <div class="section-title">🔮 WHAT DAY IS TOMORROW?</div>
+  <p style="color:#777;margin-bottom:8px;font-style:italic;">The hardest quiz known to humanity. Are you smarter than a calendar?</p>
+  <div style="max-width:580px;margin:26px auto;">
+    <div style="background:#1e1e3a;border-radius:20px;padding:32px;text-align:center;border:2px solid #2a2a3a;margin-bottom:22px;">
+      <div style="font-size:4rem;margin-bottom:12px;">🤔</div>
+      <h2 style="font-family:'Bebas Neue',cursive;font-size:2.2rem;color:var(--spark);letter-spacing:2px;margin-bottom:8px;">TODAY IS <span id="dp-today-name" style="color:var(--fire);">???</span></h2>
+      <p style="color:#aaa;font-size:1rem;">So what magical day comes after this one?</p>
+      <p style="color:#444;font-size:0.78rem;margin-top:6px;font-style:italic;">Choose wisely. Or don't. We both know how this goes.</p>
+    </div>
+    <div id="dp-options" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+    <div id="dp-ai-choice" style="margin-top:18px;background:linear-gradient(135deg,#1a1a0d,#0d0d1a);border:2px solid var(--spark);border-radius:16px;padding:18px;text-align:center;display:none;">
+      <div style="font-size:0.66rem;text-transform:uppercase;letter-spacing:2px;color:var(--spark);margin-bottom:8px;">🤖 AI's Official Prediction</div>
+      <div id="dp-ai-day" style="font-family:'Bebas Neue',cursive;font-size:2.2rem;color:var(--spark);"></div>
+      <div id="dp-ai-reason" style="color:#aaa;font-size:0.82rem;margin-top:6px;font-style:italic;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LOADING OVERLAY -->
+<div id="dp-loading">
+  <div id="dp-load-emoji">🔄</div>
+  <div id="dp-load-step"></div>
+  <div id="dp-load-subtext"></div>
+  <div id="dp-load-bar-wrap">
+    <div id="dp-load-bar"></div>
+  </div>
+  <div id="dp-load-pct">0%</div>
+</div>
+
+<!-- RESULT OVERLAY -->
+<div id="dp-result">
+  <div id="dp-result-emoji" style="font-size:6rem;"></div>
+  <h2 id="dp-result-title" style="font-family:'Bebas Neue',cursive;font-size:clamp(2rem,8vw,4rem);margin:16px 0;letter-spacing:3px;"></h2>
+  <p id="dp-result-msg" style="font-size:1.03rem;color:#ccc;max-width:500px;line-height:1.6;margin-bottom:8px;"></p>
+  <p id="dp-result-sub" style="font-size:0.86rem;color:#555;max-width:450px;font-style:italic;margin-bottom:28px;"></p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+    <button class="btn-primary" onclick="resetDayGame()">🔄 Try Again</button>
+    <button class="btn-secondary" onclick="closeDpResult()">✕ Close</button>
+  </div>
+</div>
+
+<!-- RANDOM ROAST TOAST -->
+<div id="random-toast" role="status" aria-live="polite">
+  <div class="toast-name" id="toast-name"></div>
+  <div class="toast-roast" id="toast-roast"></div>
+  <button class="toast-close" onclick="closeToast()">dismiss</button>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑</button>
+
+<footer>
+  Made with <span>🔥</span> by <span style="color:var(--spark);font-weight:900;">Abhijit</span> &nbsp;|&nbsp; All roasts are fictional and also extremely true
+</footer>
+
+<script>
+  // ── PAGE NAV ──
+  const pageFlashColors = {
+    wahida: '#ff450033',
+    sadia:  '#4488ff22',
+    asin:   '#ffd70033',
+    jennat: '#ff880033',
+    moytri: '#ff69b422',
+    priya:  '#ff69b433',
+    group:  '#ff880033',
+    crossroast: '#aa44ff33',
+    howto:  '#44ff8822',
+    pranks: '#44ff8822',
+    shame:  '#ff000022',
+    poll:   '#aa44ff22',
+    daypredict: '#ffd70022',
+    home:   '#ff450022'
+  };
+
+  function showPage(id) {
+    const target = document.getElementById('page-' + id);
+    if (!target) return;
+
+    // Flash overlay
+    const existing = document.querySelector('.page-flash');
+    if (existing) existing.remove();
+    const flash = document.createElement('div');
+    flash.className = 'page-flash';
+    flash.style.background = pageFlashColors[id] || '#ff450022';
+    document.body.appendChild(flash);
+    flash.addEventListener('animationend', () => flash.remove());
+
+    // Switch pages — force re-animation by clone trick
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('[data-page]').forEach(b => b.classList.toggle('active', b.dataset.page === id));
+
+    // Force CSS animation to re-run by toggling class
+    target.classList.remove('active');
+    void target.offsetWidth; // reflow
+    target.classList.add('active');
+
+    document.title = id === 'home' ? 'The Official Roast Zone 🔥' : id.charAt(0).toUpperCase() + id.slice(1) + ' — Roast Zone 🔥';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (id === 'daypredict') initDayGame();
+  }
+
+  // ── MOBILE MENU ──
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const burger = document.getElementById('hamburger');
+    const isOpen = menu.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  // Keyboard nav
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      const m = document.getElementById('mobile-menu');
+      if (m.classList.contains('open')) toggleMenu();
+      closeDpResult();
+    }
+  });
+  document.getElementById('hamburger').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') toggleMenu(); });
+  document.querySelectorAll('.squad-card[tabindex]').forEach(c => {
+    c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') c.click(); });
+  });
+
+  // ── SCROLL TO TOP ──
+  const scrollBtn = document.getElementById('scroll-top-btn');
+  window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 300), { passive: true });
+
+  // ── RANDOM ROAST ──
+  const allRoasts = {
+    'Wahida': [
+      "Takes 47 selfies to get 'the candid one.' Candid means you weren't trying, love.",
+      "Texts 'I'm on my way' while still in bed. The audacity is genuinely inspiring.",
+      "Makes your problem about her journey. You came to vent and left feeling like a supporting character.",
+      "Seen every episode of every reality show ever made. Twice. But she's 'not like other girls.'"
+    ],
+    'Sadia': [
+      "Feels everything at full volume while the rest of us are still on mute. That's emotional HD.",
+      "Notices when you're not okay before you say a word. That's not sadness — that's a superpower.",
+      "When Sadia smiles — actually properly smiles — it lights up everything. She doesn't hand them out for free. You earned it.",
+      "The one people call at 3 AM not for answers, but because she actually listens. Completely. That is rarer than it sounds."
+    ],
+    'Asin': [
+      "Raises the energy of every room she enters. She's a human battery pack and everyone secretly plugs in.",
+      "Knows something about everything. She doesn't Google it after. She just already knew. It was already there.",
+      "Can talk to literally anyone on the planet. Makes the shyest person feel like the most interesting version of themselves.",
+      "Gets MORE energised the longer the hangout goes. At hour nine she's organising an afterparty. Iconic."
+    ],
+    'Jennat': [
+      "Says 'I'm not trying to be rude BUT—' and then absolutely is. The 'but' is load-bearing.",
+      "Starts every story with 'okay so basically—' and 45 minutes later you've completely lost the thread.",
+      "Debate mode activates when literally nobody is debating. A menace and we love her.",
+      "Has a strong opinion about how you said goodbye on that phone call. She's bringing it up. Soon."
+    ],
+    'Moytri': [
+      "Says 'I'm not hungry' before every meal and then outperforms everyone at the table.",
+      "Photographed her meal for 4 minutes. Food went cold. She does not care. The lighting was right.",
+      "Will remember that you took her last fry. There is no statute of limitations.",
+      "First to suggest going out, last to decide what she wants. The server has accepted this fate."
+    ],
+    'Priya': [
+      "So small that a 5-year-old once asked her what grade she was in. She answered confidently.",
+      "Laughs at absolutely everything. Someone said the word 'spoon.' Three minutes gone. We love her.",
+      "Still gets genuinely excited about stickers and window seats. While we fake maturity, she's actually living.",
+      "Uses her cuteness strategically. Has escaped bill-splitting with a single head tilt. A menace. Adorable."
+    ]
+  };
+
+  let toastTimer;
+  function showRandomRoast() {
+    const names = Object.keys(allRoasts);
+    const name = names[Math.floor(Math.random() * names.length)];
+    const roast = allRoasts[name][Math.floor(Math.random() * allRoasts[name].length)];
+    document.getElementById('toast-name').textContent = '🔥 ' + name;
+    document.getElementById('toast-roast').textContent = roast;
+    document.getElementById('random-toast').classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(closeToast, 5000);
+  }
+  function closeToast() { document.getElementById('random-toast').classList.remove('show'); }
+
+  // ── POLLS ──
+  const polls = [
+    { q: "Who would survive longest in the wild? 🌲", opts: ["Wahida (plot armor)","Sadia (would find WiFi)","Asin (knows every survival trick)","Jennat (talks the bear down)","Moytri (finds food first)","Priya (bear adopts her instantly)"], votes: [12,8,31,19,44,27] },
+    { q: "Who is most likely to accidentally become famous? ⭐", opts: ["Wahida","Sadia","Asin","Jennat","Moytri","Priya"], votes: [38,22,9,27,18,41] },
+    { q: "Who would win a debate about nothing? 🗣️", opts: ["Wahida (pure conviction)","Sadia (she has receipts)","Asin (cites Wikipedia mid-sentence)","Jennat (obviously)","Moytri (argues till food arrives)","Priya (laughs everyone into surrendering)"], votes: [14,21,8,67,11,19] },
+    { q: "Who sends the longest texts? 📝", opts: ["Wahida","Sadia","Asin","Jennat","Moytri","Priya"], votes: [18,42,3,71,15,9] },
+    { q: "Who is most likely to cancel last minute? 🚫", opts: ["Wahida","Sadia","Asin","Jennat","Moytri","Priya"], votes: [41,17,52,8,22,13] }
+  ];
+  const userVotes = {};
+
+  function renderPolls() {
+    document.getElementById('polls-container').innerHTML = polls.map((poll, pi) => {
+      const voted = userVotes[pi] !== undefined;
+      const total = poll.votes.reduce((a,b)=>a+b,0) + (voted ? 1 : 0);
+      return `<div class="poll-q"><h3>${poll.q}</h3>${poll.opts.map((opt,oi) => {
+        const v = poll.votes[oi] + (userVotes[pi]===oi ? 1:0);
+        const pct = voted ? Math.round(v/total*100) : 0;
+        const mine = voted && userVotes[pi]===oi;
+        return `<div class="poll-opt${voted?' voted':''}" onclick="vote(${pi},${oi})" role="button" tabindex="${voted?-1:0}">
+          <div class="bar" style="width:${pct}%"></div>
+          <div class="opt-text"><span>${mine?'✓ ':''}${opt}</span>${voted?`<span class="pct">${pct}%</span>`:''}</div>
+        </div>`;
+      }).join('')}</div>`;
+    }).join('');
+  }
+
+  function vote(pi, oi) {
+    if (userVotes[pi] !== undefined) return;
+    userVotes[pi] = oi;
+    renderPolls();
+  }
+  renderPolls();
+
+  // ── DAY PREDICTION ──
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+  const wrongSteps = [
+    {emoji:'😳', text:'Wait... you actually picked that?', sub:'Processing the audacity...', anim:'pop'},
+    {emoji:'📞', text:'Calling Elon Musk for emergency assistance...', sub:'He\'s busy tweeting. Classic.', anim:'wobble'},
+    {emoji:'🚀', text:'Elon launched a Tesla to find the right answer...', sub:'Still in orbit. No update.', anim:'pop'},
+    {emoji:'🤖', text:'Consulting ChatGPT... it also got it wrong.', sub:'AI solidarity achieved.', anim:'wobble'},
+    {emoji:'🌍', text:'Asking Google Maps what day it is spatially...', sub:'"Recalculating... recalculating..."', anim:'pop'},
+    {emoji:'🔮', text:'Summoning the ancient spirit of a calendar...', sub:'The calendar is judging you silently.', anim:'wobble'},
+    {emoji:'📡', text:'Pinging NASA for cosmic day confirmation...', sub:'They said "wow that\'s a bad guess."', anim:'pop'},
+    {emoji:'🌸', text:'Consulting Priya... she just giggled and walked away.', sub:'Even she couldn\'t help. Devastating.', anim:'wobble'},
+    {emoji:'😤', text:'Thursday is filing a restraining order against you...', sub:'Wednesday is also offended. For some reason.', anim:'pop'},
+    {emoji:'🧠', text:'Attempting emergency brain recalibration...', sub:'Estimated completion: never.', anim:'wobble'},
+    {emoji:'📜', text:'Filing your answer with the International Bureau of Wrong...', sub:'You\'ve been accepted. With honours.', anim:'pop'},
+    {emoji:'💀', text:'Conclusion: You do not know what day it is.', sub:'This has been certified. Officially.', anim:'wobble'},
+  ];
+
+  const correctSteps = [
+    {emoji:'👀', text:'Hold on... did you actually get that right?', sub:'Double-checking. This can\'t be real.', anim:'pop'},
+    {emoji:'🧐', text:'Verifying with the International Calendar Authority...', sub:'They\'re also surprised. Please hold.', anim:'wobble'},
+    {emoji:'🛸', text:'Triangulating via 47 satellites...', sub:'All 47 confirm. Reluctantly.', anim:'pop'},
+    {emoji:'📊', text:'Running statistical analysis on your answer...', sub:'Probability of this being a fluke: 94%.', anim:'wobble'},
+    {emoji:'🏆', text:'Minting your Official Genius Certificate...', sub:'Gold. Obviously.', anim:'pop'},
+    {emoji:'🎓', text:'Notifying Oxford University of your achievement...', sub:'They\'re adding a new department for this.', anim:'wobble'},
+    {emoji:'📰', text:'Breaking news: Local person knows what day it is.', sub:'"Unprecedented," says expert.', anim:'pop'},
+    {emoji:'✅', text:'Confirmed. You are smarter than a calendar.', sub:'We never thought we\'d see this day.', anim:'wobble'},
+  ];
+
+  const wrongResults = [
+    {title:'ABSOLUTELY NOT', emoji:'💀', msg:"That was impressively wrong. Like, hall-of-fame level wrong. We have framed it.", sub:"We called Elon. He was too busy to help. You're on your own."},
+    {title:'WHAT IS TIME EVEN', emoji:'🌀', msg:"Were you dropped on a calendar as a child? Asking for a friend. The friend is a calendar.", sub:"NASA has been notified. They are, frankly, baffled."},
+    {title:'BRAVE ATTEMPT', emoji:'😂', msg:"Points for confidence: 10/10. Points for accuracy: 0/10. Overall score: vibes.", sub:"Google Maps tried to trace where it went wrong. It crashed."},
+    {title:'CLOSE-ISH (NOT REALLY)', emoji:'🤡', msg:"Somewhere between completely wrong and an alternate dimension where you might be right.", sub:"The calendar is not mad. It is just deeply, quietly disappointed."},
+    {title:'DELETE YOUR CALENDAR APP', emoji:'💥', msg:"A monument to confusion. A masterpiece of wrongness. A legend in its own time.", sub:"ChatGPT also got it wrong so technically you have company."},
+    {title:'HOW', emoji:'🫠', msg:"Of all seven days available. ALL SEVEN. You picked that one.", sub:"The days of the week held a meeting. You were discussed."},
+  ];
+
+  const correctResults = [
+    {title:'GENIUS DETECTED', emoji:'🏆', msg:"You correctly identified what happens after today. You absolute legend of a human being.", sub:"Oxford is preparing your honorary degree in Calendar Sciences as we speak."},
+    {title:'UNBELIEVABLE SCENES', emoji:'🎓', msg:"You got it right. We are shocked. The days of the week are shocked. The calendar wept.", sub:"This moment will go down in group chat history forever. Screenshots have been taken."},
+    {title:'CALENDAR WHISPERER', emoji:'🔮', msg:"47 satellites confirmed it. The ancient spirits confirmed it. You are correct and powerful.", sub:"Please teach the others. They need it. Desperately."},
+    {title:'STATISTICALLY UNLIKELY', emoji:'🧠', msg:"Our models gave you a 6% chance of getting this right. You defied the odds. Unexplainably.", sub:"Scientists are looking into how this happened. No conclusions yet."},
+  ];
+
+  function initDayGame() {
+    const todayIdx = new Date().getDay();
+    document.getElementById('dp-today-name').textContent = days[todayIdx].toUpperCase();
+    const correct = days[(todayIdx+1)%7];
+    const opts = [...days].sort(() => Math.random()-0.5);
+    const aiPick = Math.random()<0.3 ? correct : days.filter(d=>d!==correct)[Math.floor(Math.random()*6)];
+    const reasons = [
+      'My quantum algorithm detected '+aiPick+' with 99.7% confidence. Trust.',
+      'After consulting 14 satellites and Elon\'s gut feeling: '+aiPick+'.',
+      'The vibes are screaming '+aiPick+'. I don\'t make the rules.',
+      'I ran 4 billion simulations. '+aiPick+' won. Barely. It was ugly.',
+      'My sources (one horoscope, one fortune cookie, one suspicious pigeon): '+aiPick+'.',
+      'I asked Priya. She laughed and said '+aiPick+'. I\'m going with it.',
+    ];
+    const aiEl = document.getElementById('dp-ai-choice');
+    aiEl.style.display = 'block';
+    document.getElementById('dp-ai-day').textContent = aiPick.toUpperCase();
+    document.getElementById('dp-ai-reason').textContent = reasons[Math.floor(Math.random()*reasons.length)];
+    const container = document.getElementById('dp-options');
+    container.innerHTML = '';
+    opts.forEach(day => {
+      const isCorrect = day === correct;
+      const btn = document.createElement('button');
+      btn.textContent = day;
+      btn.setAttribute('aria-label', 'Choose ' + day);
+      btn.style.cssText = 'background:linear-gradient(135deg,#1e1e3a,#16213e);border:2px solid #2a2a3a;color:white;font-family:Nunito,sans-serif;font-weight:900;font-size:1.05rem;padding:14px;border-radius:12px;cursor:pointer;transition:all 0.2s;width:100%;';
+      btn.onmouseover = ()=>{ btn.style.borderColor='#ff8800'; btn.style.transform='scale(1.04)'; };
+      btn.onmouseout = ()=>{ btn.style.borderColor='#2a2a3a'; btn.style.transform='scale(1)'; };
+      btn.onclick = () => answerDay(isCorrect, day, correct);
+      container.appendChild(btn);
+    });
+  }
+
+  function answerDay(isCorrect, chosen, correct) {
+    document.querySelectorAll('#dp-options button').forEach(b=>{ b.disabled=true; b.style.opacity='0.5'; });
+    // Shake wrong buttons briefly
+    if (!isCorrect) {
+      setTimeout(()=>{
+        const overlay = document.getElementById('dp-loading');
+        overlay.classList.add('shake');
+        setTimeout(()=>overlay.classList.remove('shake'), 700);
+      }, 400);
+    }
+    document.getElementById('dp-load-bar').className = isCorrect ? 'right-bar' : 'wrong-bar';
+    runLoadingSequence(isCorrect ? correctSteps : wrongSteps, ()=>showDayResult(isCorrect, chosen, correct));
+  }
+
+  function runLoadingSequence(steps, onDone) {
+    const overlay = document.getElementById('dp-loading');
+    overlay.classList.add('active');
+    let i = 0;
+    const bar = document.getElementById('dp-load-bar');
+    const pctEl = document.getElementById('dp-load-pct');
+    const stepEl = document.getElementById('dp-load-step');
+    const subEl = document.getElementById('dp-load-subtext');
+    const emojiEl = document.getElementById('dp-load-emoji');
+    bar.style.width = '0%';
+
+    function next() {
+      if (i >= steps.length) { overlay.classList.remove('active'); onDone(); return; }
+      const s = steps[i];
+
+      // Animate emoji swap
+      emojiEl.classList.remove('pop','wobble');
+      void emojiEl.offsetWidth;
+      emojiEl.textContent = s.emoji;
+      emojiEl.classList.add(s.anim || 'pop');
+
+      // Animate text swap
+      stepEl.style.animation = 'none';
+      void stepEl.offsetWidth;
+      stepEl.style.animation = 'dpStepIn 0.3s ease both';
+      stepEl.textContent = s.text;
+
+      subEl.style.opacity = '0';
+      setTimeout(()=>{ subEl.textContent = s.sub || ''; subEl.style.opacity = '1'; }, 200);
+
+      const p = Math.round((i+1)/steps.length*100);
+      bar.style.width = p+'%';
+      pctEl.textContent = p+'%';
+      i++;
+      setTimeout(next, 900 + Math.random()*500);
+    }
+    next();
+  }
+
+  function showDayResult(isCorrect, chosen, correct) {
+    const pool = isCorrect ? correctResults : wrongResults;
+    const r = pool[Math.floor(Math.random()*pool.length)];
+    const result = document.getElementById('dp-result');
+    result.classList.remove('wrong','correct');
+    result.classList.add(isCorrect ? 'correct' : 'wrong');
+    document.getElementById('dp-result-emoji').textContent = r.emoji;
+    document.getElementById('dp-result-title').textContent = r.title;
+    document.getElementById('dp-result-title').style.color = isCorrect ? '#44ff88' : '#ff4500';
+    document.getElementById('dp-result-msg').textContent = isCorrect
+      ? r.msg
+      : 'You said '+chosen.toUpperCase()+'. The answer was '+correct.toUpperCase()+'. '+r.msg;
+    document.getElementById('dp-result-sub').textContent = r.sub;
+    result.classList.add('active');
+    if (isCorrect) launchConfetti();
+  }
+
+  function resetDayGame() {
+    document.getElementById('dp-result').classList.remove('active');
+    document.getElementById('dp-loading').classList.remove('active');
+    initDayGame();
+  }
+  function closeDpResult() { document.getElementById('dp-result').classList.remove('active'); }
+
+  // ── CONFETTI ──
+  function launchConfetti() {
+    const colors = ['#ff4500','#ffd700','#44ff88','#ff69b4','#00cfff','#ff8c00','#aa44ff'];
+    for (let i = 0; i < 90; i++) {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        const size = 6 + Math.random()*10;
+        el.style.cssText = `left:${Math.random()*100}vw;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>0.5?'50%':'2px'};animation-duration:${1.6+Math.random()*2}s;animation-delay:${Math.random()*0.4}s;`;
+        document.body.appendChild(el);
+        el.addEventListener('animationend', ()=>el.remove());
+      }, i * 18);
+    }
+  }
+
+  // ── INIT ──
+  initDayGame();
+</script>
+</body>
+</html>

@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Official Roast Zone 🔥</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fire: #ff4500;
+    --ember: #ff8c00;
+    --smoke: #1a1a2e;
+    --ash: #16213e;
+    --spark: #ffd700;
+    --white: #f5f5f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--smoke); color: var(--white); font-family: 'Nunito', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+  body::before {
+    content: '';
+    position: fixed; bottom: -20px; left: 0; right: 0; height: 200px;
+    background: radial-gradient(ellipse at 50% 100%, #ff450055 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+    animation: flicker 3s ease-in-out infinite alternate;
+  }
+  @keyframes flicker { from { opacity: 0.6; } to { opacity: 1; } }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse { from { text-shadow: 0 0 40px #ff4500, 0 0 80px #ff450066; } to { text-shadow: 0 0 60px #ff4500, 0 0 120px #ff4500aa, 0 0 200px #ff450044; } }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes confettiFall { 0% { transform: translateY(-10px) rotate(0deg); opacity:1; } 100% { transform: translateY(100vh) rotate(720deg); opacity:0; } }
+
+  /* ── PER-PERSON PAGE ANIMATIONS ── */
+  /* Wahida: slides in from the right like she owns the place */
+  @keyframes wahidaEnter { 0%{opacity:0;transform:translateX(80px) scale(0.96);filter:brightness(2.5)} 55%{filter:brightness(1.3)} 100%{opacity:1;transform:translateX(0) scale(1);filter:brightness(1)} }
+  /* Sadia: dreamy slow blur-fade up — soft and emotional */
+  @keyframes sadiaEnter { 0%{opacity:0;transform:translateY(28px);filter:blur(8px) saturate(0)} 100%{opacity:1;transform:translateY(0);filter:blur(0) saturate(1)} }
+  /* Asin: electric zap — fast scale pop with brightness burst */
+  @keyframes asinEnter { 0%{opacity:0;transform:scale(0.8) rotate(-2deg);filter:brightness(4) saturate(0)} 40%{opacity:1;transform:scale(1.06) rotate(1deg);filter:brightness(1.6) saturate(2)} 70%{transform:scale(0.97) rotate(-0.5deg)} 100%{transform:scale(1) rotate(0);filter:brightness(1) saturate(1)} }
+  /* Jennat: bounces up confidently */
+  @keyframes jennatEnter { 0%{opacity:0;transform:translateY(55px) skewY(3deg)} 55%{transform:translateY(-10px) skewY(0)} 75%{transform:translateY(5px)} 100%{opacity:1;transform:translateY(0)} }
+  /* Moytri: drops in from top like food landing */
+  @keyframes moytriEnter { 0%{opacity:0;transform:translateY(-60px) scale(1.06)} 55%{transform:translateY(10px) scale(0.97)} 80%{transform:translateY(-5px) scale(1.01)} 100%{opacity:1;transform:translateY(0) scale(1)} }
+  /* Group: zooms in together */
+  @keyframes groupEnter { 0%{opacity:0;transform:scale(0.88)} 65%{transform:scale(1.03)} 100%{opacity:1;transform:scale(1)} }
+  /* Card stagger reveal */
+  @keyframes cardReveal { from{opacity:0;transform:translateX(-28px)} to{opacity:1;transform:translateX(0)} }
+  /* Emoji bounce */
+  @keyframes emojiBounce { 0%{transform:scale(0) rotate(-15deg)} 60%{transform:scale(1.2) rotate(5deg)} 80%{transform:scale(0.9) rotate(-2deg)} 100%{transform:scale(1) rotate(0)} }
+  /* Flash wipe */
+  @keyframes flashWipe { 0%{opacity:0.7} 100%{opacity:0;pointer-events:none} }
+
+  /* ── NAV ── */
+  nav {
+    background: #0d0d1a; border-bottom: 3px solid var(--fire);
+    padding: 0 16px; position: sticky; top: 0; z-index: 500;
+    display: flex; align-items: center; gap: 2px;
+  }
+  nav .logo {
+    font-family: 'Bebas Neue', cursive; font-size: 1.55rem; color: var(--fire);
+    padding: 10px 0; margin-right: 10px; letter-spacing: 2px;
+    text-shadow: 0 0 20px #ff4500aa; flex-shrink: 0; cursor: pointer;
+  }
+  .nav-links { display: flex; gap: 2px; flex-wrap: wrap; align-items: center; flex: 1; }
+  nav button {
+    background: none; border: none; color: #aaa;
+    font-family: 'Nunito', sans-serif; font-size: 0.78rem; font-weight: 700;
+    padding: 7px 8px; cursor: pointer; border-radius: 6px;
+    transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;
+  }
+  nav button:hover, nav button.active { background: var(--fire); color: white; }
+  button:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; }
+
+  /* Hamburger */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; margin-left: auto; flex-shrink: 0; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: #aaa; border-radius: 2px; transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--fire); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--fire); }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; background: #0d0d1af8;
+    z-index: 400; flex-direction: column; align-items: center;
+    justify-content: center; gap: 10px; animation: fadeIn 0.2s ease;
+    overflow-y: auto; padding: 60px 20px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu button { font-size: 1.1rem; padding: 13px 36px; border-radius: 12px; border: 2px solid #333; width: 250px; text-align: center; }
+  .mobile-menu button:hover { border-color: var(--fire); }
+  .mobile-close { position: fixed; top: 20px; right: 20px; background: none; border: none; color: #aaa; font-size: 2rem; cursor: pointer; }
+
+  @media (max-width: 720px) { .nav-links { display: none; } .hamburger { display: flex; } }
+
+  /* ── PAGES ── */
+  .page { display: none; padding: 40px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+  .page.active { display: block; animation: fadeIn 0.4s ease; }
+
+  /* Per-person page entrance */
+  #page-wahida.active  { animation: wahidaEnter 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+  #page-sadia.active   { animation: sadiaEnter  0.75s ease both; }
+  #page-asin.active    { animation: asinEnter   0.5s  cubic-bezier(0.34,1.2,0.64,1) both; }
+  #page-jennat.active  { animation: jennatEnter 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+  #page-moytri.active  { animation: moytriEnter 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+  #page-group.active   { animation: groupEnter  0.5s  cubic-bezier(0.34,1.2,0.64,1) both; }
+
+  /* Emoji bounce on every roast page */
+  #page-wahida.active .big-emoji,
+  #page-sadia.active .big-emoji,
+  #page-asin.active .big-emoji,
+  #page-jennat.active .big-emoji,
+  #page-moytri.active .big-emoji,
+  #page-group.active .big-emoji { display:block; animation: emojiBounce 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s both; }
+
+  /* Staggered roast card reveals */
+  .roast-card { opacity:0; animation: cardReveal 0.4s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .page.active .roast-card:nth-child(1) { animation-delay:0.18s; }
+  .page.active .roast-card:nth-child(2) { animation-delay:0.28s; }
+  .page.active .roast-card:nth-child(3) { animation-delay:0.38s; }
+  .page.active .roast-card:nth-child(4) { animation-delay:0.48s; }
+  .page.active .roast-card:nth-child(5) { animation-delay:0.58s; }
+  .page.active .roast-card:nth-child(6) { animation-delay:0.68s; }
+
+  /* Flash overlay element */
+  .page-flash { position:fixed; inset:0; pointer-events:none; z-index:450; animation: flashWipe 0.45s ease forwards; }
+
+  /* ── HOME ── */
+  .hero { text-align: center; padding: 60px 20px; }
+  .hero h1 { font-family: 'Bebas Neue', cursive; font-size: clamp(3rem,10vw,7rem); color: var(--fire); text-shadow: 0 0 40px #ff4500, 0 0 80px #ff450066; line-height: 1; animation: pulse 2s ease-in-out infinite alternate; }
+  .hero p { font-size: 1.1rem; color: #ccc; margin-top: 14px; font-style: italic; }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; margin-top: 26px; flex-wrap: wrap; }
+  .btn-primary { background: var(--fire); border: none; color: white; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem; padding: 12px 24px; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { transform: scale(1.05); box-shadow: 0 6px 20px #ff450066; }
+  .btn-secondary { background: #1e1e3a; border: 2px solid var(--spark); color: var(--spark); font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem; padding: 12px 24px; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { background: var(--spark); color: #000; }
+
+  .squad-cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 14px; margin-top: 44px; }
+  .squad-card { background: linear-gradient(135deg,#1e1e3a,#16213e); border: 2px solid #333; border-radius: 16px; padding: 24px 12px; text-align: center; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; }
+  .squad-card::before { content:''; position:absolute; bottom:0;left:0;right:0;height:3px;background:var(--fire);transform:scaleX(0);transition:transform 0.3s; }
+  .squad-card:hover { transform: translateY(-8px); border-color: var(--fire); box-shadow: 0 20px 40px #ff450033; }
+  .squad-card:hover::before { transform: scaleX(1); }
+  .squad-card .emoji { font-size: 2.8rem; }
+  .squad-card .name { font-family: 'Permanent Marker', cursive; font-size: 1.1rem; color: var(--spark); margin-top: 8px; }
+  .squad-card .title { font-size: 0.72rem; color: #777; margin-top: 4px; }
+
+  /* ── RANDOM ROAST TOAST ── */
+  #random-toast {
+    position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: linear-gradient(135deg,#1e1e3a,#0d0d20); border: 2px solid var(--fire);
+    border-radius: 16px; padding: 20px 26px; max-width: 420px; width: 90%;
+    text-align: center; z-index: 300; opacity: 0; pointer-events: none; transition: all 0.4s ease;
+  }
+  #random-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  #random-toast .toast-name { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; color: var(--fire); font-weight: 900; margin-bottom: 8px; }
+  #random-toast .toast-roast { font-size: 0.93rem; color: #ddd; line-height: 1.6; }
+  #random-toast .toast-close { margin-top: 12px; background: none; border: 1px solid #444; color: #777; font-size: 0.78rem; padding: 4px 12px; border-radius: 20px; cursor: pointer; font-family: 'Nunito', sans-serif; }
+  #random-toast .toast-close:hover { border-color: var(--fire); color: var(--fire); }
+
+  /* ── ROAST PAGES ── */
+  .roast-header { text-align: center; margin-bottom: 38px; }
+  .roast-header .big-emoji { font-size: 5rem; }
+  .roast-header h2 { font-family: 'Bebas Neue', cursive; font-size: clamp(2.5rem,8vw,5rem); color: var(--spark); text-shadow: 2px 2px 0 var(--fire); letter-spacing: 3px; }
+  .roast-header .subtitle { color: #aaa; font-style: italic; margin-top: 4px; }
+  .roast-cards { display: grid; gap: 14px; }
+  .roast-card { background: linear-gradient(135deg,#1e1e3a 0%,#0d0d20 100%); border-left: 4px solid var(--fire); border-radius: 0 12px 12px 0; padding: 20px 24px; position: relative; transition: transform 0.2s; }
+  .roast-card:hover { transform: translateX(6px); }
+  .roast-card .roast-num { font-family: 'Bebas Neue',cursive; font-size: 2.5rem; color: #ff450033; position: absolute; right: 16px; top: 10px; line-height: 1; pointer-events: none; }
+  .roast-card p { font-size: 1rem; line-height: 1.7; color: #ddd; padding-right: 40px; }
+  .roast-card .label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; color: var(--fire); font-weight: 900; margin-bottom: 8px; }
+
+  /* ── PRANKS ── */
+  .pranks-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(255px,1fr)); gap: 18px; margin-top: 20px; }
+  .prank-card { background: linear-gradient(160deg,#1e1e3a,#0d1a0d); border: 2px solid #2a4a2a; border-radius: 16px; padding: 22px; transition: all 0.3s; }
+  .prank-card:hover { border-color: #44ff44; transform: scale(1.02); box-shadow: 0 10px 30px #00ff0022; }
+  .prank-card .prank-emoji { font-size: 2.3rem; margin-bottom: 10px; }
+  .prank-card h3 { font-family: 'Permanent Marker',cursive; font-size: 1.05rem; color: #44ff88; margin-bottom: 8px; }
+  .prank-card p { font-size: 0.88rem; color: #bbb; line-height: 1.6; }
+  .prank-card .difficulty { margin-top: 12px; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: var(--spark); }
+  .prank-card .victim { margin-top: 4px; font-size: 0.78rem; color: #ff6644; font-style: italic; }
+
+  /* ── HALL OF SHAME ── */
+  .shame-item { background: #0d0d1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 18px; margin-bottom: 14px; display: flex; align-items: flex-start; gap: 14px; transition: all 0.2s; }
+  .shame-item:hover { border-color: var(--fire); background: #15152a; }
+  .shame-item .shame-emoji { font-size: 2rem; flex-shrink: 0; }
+  .shame-item h3 { font-family: 'Permanent Marker',cursive; color: var(--spark); font-size: 1rem; margin-bottom: 5px; }
+  .shame-item p { color: #bbb; font-size: 0.91rem; line-height: 1.55; }
+  .shame-item .badge { display: inline-block; background: var(--fire); color: white; font-size: 0.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; padding: 3px 8px; border-radius: 20px; margin-bottom: 6px; }
+
+  /* ── POLLS ── */
+  .poll-section { max-width: 600px; margin: 0 auto; }
+  .poll-q { background: #1e1e3a; border-radius: 12px; padding: 22px; margin-bottom: 18px; }
+  .poll-q h3 { font-family: 'Permanent Marker',cursive; font-size: 1.05rem; color: var(--spark); margin-bottom: 14px; }
+  .poll-opt { background: #0d0d20; border: 2px solid #2a2a2a; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; cursor: pointer; transition: all 0.2s; font-size: 0.91rem; position: relative; overflow: hidden; user-select: none; }
+  .poll-opt:not(.voted):hover { border-color: var(--fire); color: white; }
+  .poll-opt.voted { border-color: var(--spark); cursor: default; }
+  .poll-opt .bar { position: absolute; left: 0; top: 0; bottom: 0; background: #ff450020; transition: width 0.5s ease; z-index: 0; }
+  .poll-opt.voted .bar { background: #ffd70015; }
+  .poll-opt .opt-text { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 8px; }
+  .poll-opt .pct { color: var(--spark); font-weight: 900; flex-shrink: 0; }
+
+  /* ── SHARED ── */
+  .section-title { font-family: 'Bebas Neue',cursive; font-size: 2.3rem; color: var(--fire); letter-spacing: 3px; margin-bottom: 20px; border-bottom: 2px solid #252535; padding-bottom: 8px; }
+  .back-btn { display: inline-flex; align-items: center; gap: 8px; background: #1e1e3a; border: 2px solid var(--fire); color: var(--fire); font-family: 'Nunito',sans-serif; font-weight: 900; font-size: 0.88rem; padding: 8px 16px; border-radius: 8px; cursor: pointer; margin-bottom: 28px; transition: all 0.2s; }
+  .back-btn:hover { background: var(--fire); color: white; }
+
+  footer { text-align: center; padding: 36px 20px; color: #3a3a4a; font-size: 0.8rem; position: relative; z-index: 1; border-top: 1px solid #1e1e3a; margin-top: 20px; }
+  footer span { color: var(--fire); }
+
+  /* ── SCROLL TO TOP ── */
+  .scroll-top { position: fixed; bottom: 28px; right: 28px; background: var(--fire); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; z-index: 200; transition: all 0.3s; box-shadow: 0 4px 20px #ff450066; opacity: 0; pointer-events: none; }
+  .scroll-top.visible { opacity: 1; pointer-events: auto; }
+  .scroll-top:hover { transform: scale(1.12); }
+
+  /* ── DAY PREDICTION OVERLAYS ── */
+  #dp-loading { display: none; position: fixed; inset: 0; background: #0d0d1af0; z-index: 999; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(6px); }
+  #dp-loading.active { display: flex; }
+  #dp-result { display: none; position: fixed; inset: 0; background: #0d0d1af8; z-index: 1000; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px; }
+  #dp-result.active { display: flex; }
+
+  /* ── CONFETTI ── */
+  .confetti-piece { position: fixed; top: -10px; z-index: 1001; pointer-events: none; animation: confettiFall linear forwards; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="showPage('home')">🔥 ROAST ZONE</div>
+  <div class="nav-links">
+    <button data-page="home" onclick="showPage('home')" class="active">Home</button>
+    <button data-page="wahida" onclick="showPage('wahida')">Wahida</button>
+    <button data-page="sadia" onclick="showPage('sadia')">Sadia</button>
+    <button data-page="asin" onclick="showPage('asin')">Asin</button>
+    <button data-page="jennat" onclick="showPage('jennat')">Jennat</button>
+    <button data-page="moytri" onclick="showPage('moytri')">Moytri</button>
+    <button data-page="group" onclick="showPage('group')">👥 Squad</button>
+    <button data-page="pranks" onclick="showPage('pranks')">🎭 Pranks</button>
+    <button data-page="shame" onclick="showPage('shame')">😳 Shame</button>
+    <button data-page="poll" onclick="showPage('poll')">📊 Polls</button>
+    <button data-page="daypredict" onclick="showPage('daypredict')">🔮 Tomorrow?</button>
+  </div>
+  <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Open menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+  <button class="mobile-close" onclick="toggleMenu()" aria-label="Close menu">✕</button>
+  <button data-page="home" onclick="showPage('home');toggleMenu()">🏠 Home</button>
+  <button data-page="wahida" onclick="showPage('wahida');toggleMenu()">👑 Wahida</button>
+  <button data-page="sadia" onclick="showPage('sadia');toggleMenu()">📱 Sadia</button>
+  <button data-page="asin" onclick="showPage('asin');toggleMenu()">😴 Asin</button>
+  <button data-page="jennat" onclick="showPage('jennat');toggleMenu()">🎤 Jennat</button>
+  <button data-page="moytri" onclick="showPage('moytri');toggleMenu()">🍕 Moytri</button>
+  <button data-page="group" onclick="showPage('group');toggleMenu()">👥 Squad Roast</button>
+  <button data-page="pranks" onclick="showPage('pranks');toggleMenu()">🎭 Pranks</button>
+  <button data-page="shame" onclick="showPage('shame');toggleMenu()">😳 Hall of Shame</button>
+  <button data-page="poll" onclick="showPage('poll');toggleMenu()">📊 Polls</button>
+  <button data-page="daypredict" onclick="showPage('daypredict');toggleMenu()">🔮 What Day is Tomorrow?</button>
+</div>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <h1>THE ROAST ZONE</h1>
+    <p>Where friendships go to be lovingly destroyed 💀</p>
+    <p style="margin-top:8px;font-size:0.82rem;color:#444;">100% roasted with 100% love. Probably.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showRandomRoast()">🎲 Random Roast</button>
+      <button class="btn-secondary" onclick="showPage('group')">👥 Squad Roast</button>
+    </div>
+  </div>
+  <div class="squad-cards">
+    <div class="squad-card" onclick="showPage('wahida')" role="button" tabindex="0"><div class="emoji">👑</div><div class="name">Wahida</div><div class="title">The Main Character</div></div>
+    <div class="squad-card" onclick="showPage('sadia')" role="button" tabindex="0"><div class="emoji">🌈</div><div class="name">Sadia</div><div class="title">Feels Everything, Misses Nothing</div></div>
+    <div class="squad-card" onclick="showPage('asin')" role="button" tabindex="0"><div class="emoji">⚡</div><div class="name">Asin</div><div class="title">The Human Cheat Code</div></div>
+    <div class="squad-card" onclick="showPage('jennat')" role="button" tabindex="0"><div class="emoji">🎤</div><div class="name">Jennat</div><div class="title">The Unsolicited Advisor</div></div>
+    <div class="squad-card" onclick="showPage('moytri')" role="button" tabindex="0"><div class="emoji">🍕</div><div class="name">Moytri</div><div class="title">The Food Critic</div></div>
+  </div>
+</div>
+
+<!-- WAHIDA -->
+<div id="page-wahida" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="roast-header"><div class="big-emoji">👑</div><h2>WAHIDA</h2><div class="subtitle">"The Main Character of every story, even yours"</div></div>
+  <div class="roast-cards">
+    <div class="roast-card"><div class="label">🔥 Roast #1</div><div class="roast-num">1</div><p>Wahida walks into a room and somehow makes your problem about her journey. You came to vent about your day and left feeling like a supporting character in her memoir.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #2</div><div class="roast-num">2</div><p>She takes 47 selfies to get "the candid one." Girl, candid means you weren't trying. The hashtag should be #staged not #nofilter.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #3</div><div class="roast-num">3</div><p>Wahida gives unsolicited life advice with the confidence of someone who has it all figured out — which is incredible considering she texts "I'm on my way" while still in bed.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #4</div><div class="roast-num">4</div><p>She says "I'm not like other girls" and yet has seen every episode of every reality TV show ever made. Twice.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #5</div><div class="roast-num">5</div><p>Wahida's autobiography title: "It's Not My Fault But Also Everyone Should Learn From This." Available in the Self-Help aisle.</p></div>
+  </div>
+</div>
+
+<!-- SADIA -->
+<div id="page-sadia" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="roast-header"><div class="big-emoji">🌈</div><h2>SADIA</h2><div class="subtitle">"The most real one in the room — and the room knows it"</div></div>
+
+  <div style="background:linear-gradient(135deg,#0d1a2a,#1a0d2e);border:2px solid #4488ff;border-radius:20px;padding:24px;margin-bottom:24px;text-align:center;">
+    <div style="font-size:1.1rem;color:#4488ff;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">✨ SADIA APPRECIATION NOTICE ✨</div>
+    <p style="color:#aac4ff;font-size:0.95rem;line-height:1.8;">Yes, she feels things deeply. Yes, she goes quiet sometimes. But she's also the one who notices when YOU'RE not okay before you even say a word. That's not sadness — that's a superpower most people never develop.</p>
+  </div>
+
+  <div class="roast-cards">
+    <div class="roast-card" style="border-left-color:#4488ff;"><div class="label" style="color:#4488ff;">💙 Truth #1</div><div class="roast-num">1</div><p>Sadia feels everything at full volume while the rest of us are still on mute. That's not a flaw — that's emotional HD. Most people spend years in therapy trying to get there.</p></div>
+    <div class="roast-card" style="border-left-color:#aa44ff;"><div class="label" style="color:#aa44ff;">💜 Truth #2</div><div class="roast-num">2</div><p>She doesn't need to be on her phone 24/7 because she's actually present. Revolutionary concept. Some people could learn something. (Looking at everyone else in this group.)</p></div>
+    <div class="roast-card" style="border-left-color:#4488ff;"><div class="label" style="color:#4488ff;">💙 Truth #3</div><div class="roast-num">3</div><p>When Sadia is happy — actually properly happy — it lights up everything around her. It's rare and that's exactly what makes it special. She doesn't hand out smiles for free. When you get one, you earned it.</p></div>
+    <div class="roast-card" style="border-left-color:#aa44ff;"><div class="label" style="color:#aa44ff;">💜 Truth #4</div><div class="roast-num">4</div><p>Sadia's the one people call at 3 AM not because she has the answers, but because she actually listens. Completely. Without checking her phone. Without waiting for her turn to speak. That is rarer than it sounds.</p></div>
+    <div class="roast-card" style="border-left-color:#ff69b4;"><div class="label" style="color:#ff69b4;">🌸 Truth #5</div><div class="roast-num">5</div><p>The world needs more people who feel things this genuinely. Keep going, Sadia. The depth that makes you feel heavy sometimes? That's the same thing that makes you unforgettable. 💙</p></div>
+  </div>
+</div>
+
+<!-- ASIN -->
+<div id="page-asin" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="roast-header"><div class="big-emoji">⚡🧠</div><h2>ASIN</h2><div class="subtitle">"The human cheat code — extrovert, genius, unstoppable"</div></div>
+
+  <div style="background:linear-gradient(135deg,#1a1a0a,#0a1a0a);border:2px solid var(--spark);border-radius:20px;padding:24px;margin-bottom:24px;text-align:center;">
+    <div style="font-size:1.1rem;color:var(--spark);font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">🏆 ASIN HALL OF FAME ENTRY 🏆</div>
+    <p style="color:#ffe88a;font-size:0.95rem;line-height:1.8;">Officially certified as the group's walking encyclopedia, social butterfly, and the only person capable of knowing what you need before you ask. Scientists are baffled. We're just proud to know her.</p>
+  </div>
+
+  <div class="roast-cards">
+    <div class="roast-card" style="border-left-color:var(--spark);"><div class="label" style="color:var(--spark);">⚡ Legend #1</div><div class="roast-num">1</div><p>Asin walks into any room and immediately raises the energy of everyone in it. Not metaphorically — literally. There are studies. She is a human battery pack and everyone secretly plugs in.</p></div>
+    <div class="roast-card" style="border-left-color:#44ff88;"><div class="label" style="color:#44ff88;">🌟 Legend #2</div><div class="roast-num">2</div><p>She knows something about everything. History, science, that random fact you needed at exactly the right moment — Asin has it. She doesn't Google it after the conversation. She just knew. It was already there.</p></div>
+    <div class="roast-card" style="border-left-color:var(--spark);"><div class="label" style="color:var(--spark);">⚡ Legend #3</div><div class="roast-num">3</div><p>Asin can talk to anyone on the planet. The shyest person becomes comfortable. The quietest room comes alive. She has this gift of making people feel like the most interesting version of themselves. It's genuinely rare.</p></div>
+    <div class="roast-card" style="border-left-color:#44ff88;"><div class="label" style="color:#44ff88;">🌟 Legend #4</div><div class="roast-num">4</div><p>She gets MORE energised the longer the hangout goes. At hour one, she's great. At hour five, she's somehow better. At hour nine, she's organising an afterparty. The rest of us need a three-day recovery. She's already planning next weekend.</p></div>
+    <div class="roast-card" style="border-left-color:#ffd700;"><div class="label" style="color:#ffd700;">🏆 Legend #5</div><div class="roast-num">5</div><p>Here's the thing about Asin: she uses all that knowledge and all that energy entirely for good. She hypes people up, she shares what she knows, she includes everyone. Being this talented and this generous about it? Honestly iconic. ⚡</p></div>
+  </div>
+</div>
+
+<!-- JENNAT -->
+<div id="page-jennat" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="roast-header"><div class="big-emoji">🎤</div><h2>JENNAT</h2><div class="subtitle">"Opinions: unlimited. Filter: unavailable"</div></div>
+  <div class="roast-cards">
+    <div class="roast-card"><div class="label">🔥 Roast #1</div><div class="roast-num">1</div><p>Jennat will hear half your sentence and already have a full solution, three alternatives, and a concerned follow-up question. She plays therapist in every group chat.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #2</div><div class="roast-num">2</div><p>She starts stories with "Okay so basically—" and 45 minutes later you're learning about a situation from a friend of a friend in 2019. No one is safe from the lore.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #3</div><div class="roast-num">3</div><p>Jennat says "I'm not trying to be rude BUT—" and then absolutely is. The "but" is load-bearing. Everything before it is legally required to mean nothing.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #4</div><div class="roast-num">4</div><p>She has a strong opinion on your outfit, your order, your life choices, and the way you said "bye" on that phone call. And she WILL bring it up.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #5</div><div class="roast-num">5</div><p>Jennat's debate mode activates when nobody is debating. She'll argue a position, win, and then argue the other side just to keep it alive. A menace. We love her.</p></div>
+  </div>
+</div>
+
+<!-- MOYTRI -->
+<div id="page-moytri" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="roast-header"><div class="big-emoji">🍕</div><h2>MOYTRI</h2><div class="subtitle">"Food comes first. You come second. Barely."</div></div>
+  <div class="roast-cards">
+    <div class="roast-card"><div class="label">🔥 Roast #1</div><div class="roast-num">1</div><p>Moytri's love language is food, and her love language for enemies is also food — just bad food. She will remember forever that you took her last fry. There is no statute of limitations.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #2</div><div class="roast-num">2</div><p>She says "I'm not hungry" before every meal and then eats more than anyone at the table. The disclaimer is purely ceremonial at this point.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #3</div><div class="roast-num">3</div><p>Moytri photographs every meal before eating it with a seriousness usually reserved for crime scene documentation. The food goes cold. She doesn't care. The lighting was perfect.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #4</div><div class="roast-num">4</div><p>She has strong feelings about how you cook. She will demonstrate the correct way. She will eat the result and say "not bad" — from Moytri, that means you've been blessed.</p></div>
+    <div class="roast-card"><div class="label">🔥 Roast #5</div><div class="roast-num">5</div><p>Moytri is first to suggest going out to eat and last to decide what she wants. By the time she orders, everyone has finished. The server knows. The server has accepted it.</p></div>
+  </div>
+</div>
+
+<!-- GROUP ROAST -->
+<div id="page-group" class="page">
+  <div class="roast-header"><div class="big-emoji">👥💀</div><h2>THE SQUAD ROAST</h2><div class="subtitle">"Individually dangerous. Together, a catastrophe."</div></div>
+  <div style="background:linear-gradient(135deg,#1e1e3a,#0d0d20);border:2px solid var(--fire);border-radius:20px;padding:26px;margin-bottom:24px;text-align:center;">
+    <div style="font-size:1.3rem;margin-bottom:10px;">🔥 THE OFFICIAL SQUAD CERTIFICATE 🔥</div>
+    <p style="color:#aaa;font-size:0.93rem;line-height:1.8;">This certifies that <span style="color:var(--spark);font-weight:900;">Wahida, Sadia, Asin, Jennat & Moytri</span> constitute the most chaotic, loving, unreliable, and deeply unhinged friend group in recorded history. Evaluated and found to be <span style="color:var(--fire);font-weight:900;">simultaneously too much and never enough.</span></p>
+  </div>
+  <div class="roast-cards">
+    <div class="roast-card"><div class="label">🔥 Group Roast #1</div><div class="roast-num">1</div><p>As a collective, this squad has planned approximately 47 group outings. They have successfully executed 3. One of those was an accident. They consider this a good track record.</p></div>
+    <div class="roast-card"><div class="label">🔥 Group Roast #2</div><div class="roast-num">2</div><p>The group chat has 3,000+ unread messages, a pinned message nobody remembers pinning, and at least one running joke that made sense in 2022 and means nothing now. Everyone still uses it daily.</p></div>
+    <div class="roast-card"><div class="label">🔥 Group Roast #3</div><div class="roast-num">3</div><p>Collectively, someone has dramatically said "I'm done with drama" then immediately started drama a combined 94 times. The number continues to climb.</p></div>
+    <div class="roast-card"><div class="label">🔥 Group Roast #4</div><div class="roast-num">4</div><p>As a unit, they take 25 minutes to decide where to eat, order food that arrives cold because the debate took so long, then immediately begin debating where to eat next time. This is their ecosystem.</p></div>
+    <div class="roast-card"><div class="label">🔥 Group Roast #5</div><div class="roast-num">5</div><p>This group gives advice that contradicts itself in real time. Wahida says go left, Jennat explains why right is correct, Asin has already Googled it and cited three sources, Sadia stares sadly into the distance, and Moytri has already eaten.</p></div>
+    <div class="roast-card"><div class="label">🔥 Group Roast #6</div><div class="roast-num">6</div><p>Despite everything — cancelled plans, unsolicited opinions, 3 AM voice notes, stolen fries, 47-minute explanations — this is the group nobody is leaving. Beautiful or deeply concerning. Probably both.</p></div>
+  </div>
+  <div style="margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(188px,1fr));gap:12px;">
+    <div style="background:#1e1e3a;border-radius:12px;padding:16px;text-align:center;border:1px solid #2a2a3a;"><div style="font-size:1.8rem;">🏆</div><div style="font-family:'Permanent Marker',cursive;color:var(--spark);margin-top:6px;font-size:0.9rem;">Most Likely To Be Late</div><div style="color:#555;font-size:0.8rem;margin-top:4px;">All of them. Simultaneously.</div></div>
+    <div style="background:#1e1e3a;border-radius:12px;padding:16px;text-align:center;border:1px solid #2a2a3a;"><div style="font-size:1.8rem;">🎭</div><div style="font-family:'Permanent Marker',cursive;color:var(--spark);margin-top:6px;font-size:0.9rem;">Most Dramatic Exit</div><div style="color:#555;font-size:0.8rem;margin-top:4px;">Every week. New record holder weekly.</div></div>
+    <div style="background:#1e1e3a;border-radius:12px;padding:16px;text-align:center;border:1px solid #2a2a3a;"><div style="font-size:1.8rem;">💬</div><div style="font-family:'Permanent Marker',cursive;color:var(--spark);margin-top:6px;font-size:0.9rem;">Longest Argument</div><div style="color:#555;font-size:0.8rem;margin-top:4px;">3 days. About a gif. No resolution.</div></div>
+    <div style="background:#1e1e3a;border-radius:12px;padding:16px;text-align:center;border:1px solid #2a2a3a;"><div style="font-size:1.8rem;">❤️</div><div style="font-family:'Permanent Marker',cursive;color:var(--spark);margin-top:6px;font-size:0.9rem;">Most Likely To Show Up</div><div style="color:#555;font-size:0.8rem;margin-top:4px;">When it actually matters. Every time.</div></div>
+  </div>
+</div>
+
+<!-- PRANKS -->
+<div id="page-pranks" class="page">
+  <div class="section-title">🎭 PRANK PLAYBOOK</div>
+  <p style="color:#777;margin-bottom:22px;font-style:italic;">Use responsibly. Or don't. That's between you and your friendships.</p>
+  <div class="pranks-grid">
+    <div class="prank-card"><div class="prank-emoji">📸</div><h3>The Screenshot Trap</h3><p>Screenshot their most embarrassing old photo, set it as their wallpaper when they're not looking. Bonus: also set it as their contact photo for everyone in their phone.</p><div class="difficulty">Difficulty: ⭐⭐ Easy</div><div class="victim">Best victim: Wahida (she cares most about her image 😂)</div></div>
+    <div class="prank-card"><div class="prank-emoji">⏰</div><h3>The Alarm Farm</h3><p>Secretly set 47 alarms starting at 3 AM, each 5 minutes apart, labeled with increasingly passive-aggressive messages like "still sleeping?" and "okay seriously wake up."</p><div class="difficulty">Difficulty: ⭐⭐ Easy</div><div class="victim">Best victim: Asin (she'll sleep through the first 20 anyway)</div></div>
+    <div class="prank-card"><div class="prank-emoji">🧀</div><h3>The Food Swap</h3><p>Replace the filling in their favourite snacks with something equally edible but deeply unexpected. Oreos with toothpaste frosting. Chips replaced with crackers.</p><div class="difficulty">Difficulty: ⭐⭐⭐ Medium</div><div class="victim">Best victim: Moytri (this is a personal attack and she will know it)</div></div>
+    <div class="prank-card"><div class="prank-emoji">💬</div><h3>The Fake Notification</h3><p>Create a fake screenshot that says their biggest crush left them "on read." Watch the spiral in real time. Reveal before they do anything rash. Maybe.</p><div class="difficulty">Difficulty: ⭐⭐ Easy</div><div class="victim">Best victim: Sadia (she'll immediately screenshot it and analyse it)</div></div>
+    <div class="prank-card"><div class="prank-emoji">🗣️</div><h3>The Echo Chamber</h3><p>Agree with literally everything they say for an entire day. No pushback. Watch them get increasingly suspicious and eventually beg you to argue with them.</p><div class="difficulty">Difficulty: ⭐⭐⭐ Medium</div><div class="victim">Best victim: Jennat (she literally cannot function without debate)</div></div>
+    <div class="prank-card"><div class="prank-emoji">🖥️</div><h3>The Screenshot Desktop</h3><p>Take a screenshot of their computer desktop, set it as wallpaper, hide all actual icons. Watch them click frantically on a picture of their desktop going absolutely nowhere.</p><div class="difficulty">Difficulty: ⭐⭐⭐ Medium</div><div class="victim">Best victim: Anyone. Everyone falls for this.</div></div>
+    <div class="prank-card"><div class="prank-emoji">📦</div><h3>The Endless Box</h3><p>Wrap a gift inside a box inside a box inside a box (minimum 7 layers). The final prize? A single gummy bear. Or a gift card. Depends how much you love them.</p><div class="difficulty">Difficulty: ⭐ Very Easy</div><div class="victim">Best victim: Someone with no patience. You know who.</div></div>
+    <div class="prank-card"><div class="prank-emoji">🔊</div><h3>The Volume Creep</h3><p>Every time they leave their seat, turn their phone volume up one notch. By the time they get a call in public, it'll be at maximum. Their reaction will be priceless.</p><div class="difficulty">Difficulty: ⭐ Very Easy</div><div class="victim">Best victim: Whoever checks their phone the most. Hi Sadia.</div></div>
+    <div class="prank-card"><div class="prank-emoji">🪞</div><h3>The Motivational Mirror</h3><p>Cover their bathroom mirror with sticky notes of extremely specific "motivational quotes" written about their personal habits. They'll wake up to: "Today is a great day to reply to texts."</p><div class="difficulty">Difficulty: ⭐⭐ Easy</div><div class="victim">Best victim: Whoever needs the most self-reflection (all of them)</div></div>
+  </div>
+</div>
+
+<!-- HALL OF SHAME -->
+<div id="page-shame" class="page">
+  <div class="section-title">😳 HALL OF SHAME</div>
+  <p style="color:#777;margin-bottom:22px;font-style:italic;">These crimes against the friend group have been officially documented.</p>
+  <div class="shame-item"><div class="shame-emoji">👑</div><div><div class="badge">Wahida</div><h3>The Phantom RSVP</h3><p>Said "yes absolutely" to three group plans in one month. Attended zero. Each time had a new creative reason involving the weather, her cat, and a vague "situation." She was tagged in all the photos.</p></div></div>
+  <div class="shame-item"><div class="shame-emoji">📱</div><div><div class="badge">Sadia</div><h3>The Read Receipts Incident</h3><p>Left an important question on read for 6 hours. Was seen posting 12 Instagram stories during that time. When confronted, said "sorry I was busy." The group still has questions.</p></div></div>
+  <div class="shame-item"><div class="shame-emoji">😴</div><div><div class="badge">Asin</div><h3>The Pre-Event Nap That Became a Sleep</h3><p>Said "I'll just rest my eyes for 20 minutes before we go out." Woke up at 11:43 PM. The group had already come back. She texted "almost ready!" at midnight.</p></div></div>
+  <div class="shame-item"><div class="shame-emoji">🎤</div><div><div class="badge">Jennat</div><h3>The 47-Minute Explanation</h3><p>Was asked a yes or no question. Delivered a 47-minute explanation covering the history, her feelings, and finally a "yes, but actually let me explain why." The original asker had forgotten the question.</p></div></div>
+  <div class="shame-item"><div class="shame-emoji">🍕</div><div><div class="badge">Moytri</div><h3>The Shared Plate Situation</h3><p>Ordered "just a little bit of everything to share." Protected her portion with a fork barrier and a warning glance that communicated "sharing is theoretical." She tracked every hand the whole way.</p></div></div>
+  <div class="shame-item"><div class="shame-emoji">🏆</div><div><div class="badge">The Whole Squad</div><h3>The Group Chat That Never Decided</h3><p>One question: "Where should we eat?" — sent at 3 PM. 87 messages later at 7 PM, the group decided nothing, ate separately, and posted individual food photos to the same chat. A masterpiece.</p></div></div>
+</div>
+
+<!-- POLLS -->
+<div id="page-poll" class="page">
+  <div class="section-title">📊 TOTALLY SCIENTIFIC POLLS</div>
+  <p style="color:#777;margin-bottom:26px;font-style:italic;">Results are binding. Legally not really. Emotionally absolutely.</p>
+  <div class="poll-section" id="polls-container"></div>
+</div>
+
+<!-- DAY PREDICTION -->
+<div id="page-daypredict" class="page">
+  <div class="section-title">🔮 WHAT DAY IS TOMORROW?</div>
+  <p style="color:#777;margin-bottom:8px;font-style:italic;">The hardest quiz known to humanity. Are you smarter than a calendar?</p>
+  <div style="max-width:580px;margin:26px auto;">
+    <div style="background:#1e1e3a;border-radius:20px;padding:32px;text-align:center;border:2px solid #2a2a3a;margin-bottom:22px;">
+      <div style="font-size:4rem;margin-bottom:12px;">🤔</div>
+      <h2 style="font-family:'Bebas Neue',cursive;font-size:2.2rem;color:var(--spark);letter-spacing:2px;margin-bottom:8px;">TODAY IS <span id="dp-today-name" style="color:var(--fire);">???</span></h2>
+      <p style="color:#aaa;font-size:1rem;">So what magical day comes after this one?</p>
+      <p style="color:#444;font-size:0.78rem;margin-top:6px;font-style:italic;">Choose wisely. Or don't. We both know how this goes.</p>
+    </div>
+    <div id="dp-options" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+    <div id="dp-ai-choice" style="margin-top:18px;background:linear-gradient(135deg,#1a1a0d,#0d0d1a);border:2px solid var(--spark);border-radius:16px;padding:18px;text-align:center;display:none;">
+      <div style="font-size:0.66rem;text-transform:uppercase;letter-spacing:2px;color:var(--spark);margin-bottom:8px;">🤖 AI's Official Prediction</div>
+      <div id="dp-ai-day" style="font-family:'Bebas Neue',cursive;font-size:2.2rem;color:var(--spark);"></div>
+      <div id="dp-ai-reason" style="color:#aaa;font-size:0.82rem;margin-top:6px;font-style:italic;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LOADING OVERLAY -->
+<div id="dp-loading">
+  <div id="dp-load-emoji" style="font-size:5rem;animation:spin 1s linear infinite;">🔄</div>
+  <div id="dp-load-step" style="font-family:'Permanent Marker',cursive;font-size:1.3rem;color:var(--spark);margin-top:20px;max-width:360px;text-align:center;line-height:1.5;"></div>
+  <div style="width:290px;height:8px;background:#252535;border-radius:8px;margin-top:20px;overflow:hidden;">
+    <div id="dp-load-bar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--fire),var(--spark));border-radius:8px;transition:width 0.4s ease;"></div>
+  </div>
+  <div id="dp-load-pct" style="color:#555;font-size:0.76rem;margin-top:8px;">0%</div>
+</div>
+
+<!-- RESULT OVERLAY -->
+<div id="dp-result">
+  <div id="dp-result-emoji" style="font-size:6rem;"></div>
+  <h2 id="dp-result-title" style="font-family:'Bebas Neue',cursive;font-size:clamp(2rem,8vw,4rem);margin:16px 0;letter-spacing:3px;"></h2>
+  <p id="dp-result-msg" style="font-size:1.03rem;color:#ccc;max-width:500px;line-height:1.6;margin-bottom:8px;"></p>
+  <p id="dp-result-sub" style="font-size:0.86rem;color:#555;max-width:450px;font-style:italic;margin-bottom:28px;"></p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+    <button class="btn-primary" onclick="resetDayGame()">🔄 Try Again</button>
+    <button class="btn-secondary" onclick="closeDpResult()">✕ Close</button>
+  </div>
+</div>
+
+<!-- RANDOM ROAST TOAST -->
+<div id="random-toast" role="status" aria-live="polite">
+  <div class="toast-name" id="toast-name"></div>
+  <div class="toast-roast" id="toast-roast"></div>
+  <button class="toast-close" onclick="closeToast()">dismiss</button>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑</button>
+
+<footer>
+  Made with <span>🔥</span> by <span style="color:var(--spark);font-weight:900;">Abhijit</span> &nbsp;|&nbsp; All roasts are fictional and also extremely true
+</footer>
+
+<script>
+  // ── PAGE NAV ──
+  const pageFlashColors = {
+    wahida: '#ff450033',
+    sadia:  '#4488ff22',
+    asin:   '#ffd70033',
+    jennat: '#ff880033',
+    moytri: '#ff69b422',
+    group:  '#ff450022',
+    pranks: '#44ff8822',
+    shame:  '#ff000022',
+    poll:   '#aa44ff22',
+    daypredict: '#ffd70022',
+    home:   '#ff450022'
+  };
+
+  function showPage(id) {
+    const target = document.getElementById('page-' + id);
+    if (!target) return;
+
+    // Flash overlay
+    const existing = document.querySelector('.page-flash');
+    if (existing) existing.remove();
+    const flash = document.createElement('div');
+    flash.className = 'page-flash';
+    flash.style.background = pageFlashColors[id] || '#ff450022';
+    document.body.appendChild(flash);
+    flash.addEventListener('animationend', () => flash.remove());
+
+    // Switch pages — force re-animation by clone trick
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('[data-page]').forEach(b => b.classList.toggle('active', b.dataset.page === id));
+
+    // Force CSS animation to re-run by toggling class
+    target.classList.remove('active');
+    void target.offsetWidth; // reflow
+    target.classList.add('active');
+
+    document.title = id === 'home' ? 'The Official Roast Zone 🔥' : id.charAt(0).toUpperCase() + id.slice(1) + ' — Roast Zone 🔥';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (id === 'daypredict') initDayGame();
+  }
+
+  // ── MOBILE MENU ──
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const burger = document.getElementById('hamburger');
+    const isOpen = menu.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  // Keyboard nav
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      const m = document.getElementById('mobile-menu');
+      if (m.classList.contains('open')) toggleMenu();
+      closeDpResult();
+    }
+  });
+  document.getElementById('hamburger').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') toggleMenu(); });
+  document.querySelectorAll('.squad-card[tabindex]').forEach(c => {
+    c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') c.click(); });
+  });
+
+  // ── SCROLL TO TOP ──
+  const scrollBtn = document.getElementById('scroll-top-btn');
+  window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 300), { passive: true });
+
+  // ── RANDOM ROAST ──
+  const allRoasts = {
+    'Wahida': [
+      "Takes 47 selfies to get 'the candid one.' Candid means you weren't trying, love.",
+      "Texts 'I'm on my way' while still in bed. The audacity is genuinely inspiring.",
+      "Makes your problem about her journey. You came to vent and left feeling like a supporting character.",
+      "Seen every episode of every reality show ever made. Twice. But she's 'not like other girls.'"
+    ],
+    'Sadia': [
+      "Feels everything at full volume while the rest of us are still on mute. That's emotional HD.",
+      "Notices when you're not okay before you say a word. That's not sadness — that's a superpower.",
+      "When Sadia smiles — actually properly smiles — it lights up everything. She doesn't hand them out for free. You earned it.",
+      "The one people call at 3 AM not for answers, but because she actually listens. Completely. That is rarer than it sounds."
+    ],
+    'Asin': [
+      "Raises the energy of every room she enters. She's a human battery pack and everyone secretly plugs in.",
+      "Knows something about everything. She doesn't Google it after. She just already knew. It was already there.",
+      "Can talk to literally anyone on the planet. Makes the shyest person feel like the most interesting version of themselves.",
+      "Gets MORE energised the longer the hangout goes. At hour nine she's organising an afterparty. Iconic."
+    ],
+    'Jennat': [
+      "Says 'I'm not trying to be rude BUT—' and then absolutely is. The 'but' is load-bearing.",
+      "Starts every story with 'okay so basically—' and 45 minutes later you've completely lost the thread.",
+      "Debate mode activates when literally nobody is debating. A menace and we love her.",
+      "Has a strong opinion about how you said goodbye on that phone call. She's bringing it up. Soon."
+    ],
+    'Moytri': [
+      "Says 'I'm not hungry' before every meal and then outperforms everyone at the table.",
+      "Photographed her meal for 4 minutes. Food went cold. She does not care. The lighting was right.",
+      "Will remember that you took her last fry. There is no statute of limitations.",
+      "First to suggest going out, last to decide what she wants. The server has accepted this fate."
+    ]
+  };
+
+  let toastTimer;
+  function showRandomRoast() {
+    const names = Object.keys(allRoasts);
+    const name = names[Math.floor(Math.random() * names.length)];
+    const roast = allRoasts[name][Math.floor(Math.random() * allRoasts[name].length)];
+    document.getElementById('toast-name').textContent = '🔥 ' + name;
+    document.getElementById('toast-roast').textContent = roast;
+    document.getElementById('random-toast').classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(closeToast, 5000);
+  }
+  function closeToast() { document.getElementById('random-toast').classList.remove('show'); }
+
+  // ── POLLS ──
+  const polls = [
+    { q: "Who would survive longest in the wild? 🌲", opts: ["Wahida (plot armor)","Sadia (would find WiFi)","Asin (sleeps through danger)","Jennat (talks the bear down)","Moytri (finds food first)"], votes: [12,8,31,19,44] },
+    { q: "Who is most likely to accidentally become famous? ⭐", opts: ["Wahida","Sadia","Asin","Jennat","Moytri"], votes: [38,22,9,27,18] },
+    { q: "Who would win a debate about nothing? 🗣️", opts: ["Wahida (pure conviction)","Sadia (she has receipts)","Asin (too tired to back down)","Jennat (obviously)","Moytri (argues till food arrives)"], votes: [14,21,8,67,11] },
+    { q: "Who sends the longest texts? 📝", opts: ["Wahida","Sadia","Asin","Jennat","Moytri"], votes: [18,42,3,71,15] },
+    { q: "Who is most likely to cancel last minute? 🚫", opts: ["Wahida","Sadia","Asin","Jennat","Moytri"], votes: [41,17,52,8,22] }
+  ];
+  const userVotes = {};
+
+  function renderPolls() {
+    document.getElementById('polls-container').innerHTML = polls.map((poll, pi) => {
+      const voted = userVotes[pi] !== undefined;
+      const total = poll.votes.reduce((a,b)=>a+b,0) + (voted ? 1 : 0);
+      return `<div class="poll-q"><h3>${poll.q}</h3>${poll.opts.map((opt,oi) => {
+        const v = poll.votes[oi] + (userVotes[pi]===oi ? 1:0);
+        const pct = voted ? Math.round(v/total*100) : 0;
+        const mine = voted && userVotes[pi]===oi;
+        return `<div class="poll-opt${voted?' voted':''}" onclick="vote(${pi},${oi})" role="button" tabindex="${voted?-1:0}">
+          <div class="bar" style="width:${pct}%"></div>
+          <div class="opt-text"><span>${mine?'✓ ':''}${opt}</span>${voted?`<span class="pct">${pct}%</span>`:''}</div>
+        </div>`;
+      }).join('')}</div>`;
+    }).join('');
+  }
+
+  function vote(pi, oi) {
+    if (userVotes[pi] !== undefined) return;
+    userVotes[pi] = oi;
+    renderPolls();
+  }
+  renderPolls();
+
+  // ── DAY PREDICTION ──
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const wrongSteps = [
+    {emoji:'📞', text:'Calling Elon Musk for help...'},
+    {emoji:'🚀', text:'Elon is busy launching a Tesla into space. Please hold.'},
+    {emoji:'🤖', text:'Consulting ChatGPT... it also got it wrong.'},
+    {emoji:'🌍', text:'Asking Google Maps what day it is spatially...'},
+    {emoji:'🔮', text:'Summoning the spirit of a calendar...'},
+    {emoji:'📡', text:'Pinging NASA for confirmation...'},
+    {emoji:'🧠', text:'Attempting to rewire your entire brain...'},
+    {emoji:'📜', text:'Filing a formal complaint with the days of the week...'},
+    {emoji:'😤', text:'Thursday is filing a restraining order against you...'},
+    {emoji:'💀', text:'Deleting your calendar app. You clearly do not need it.'},
+  ];
+  const correctSteps = [
+    {emoji:'🎉', text:'Verifying with the International Calendar Authority...'},
+    {emoji:'🛸', text:'Triangulating via satellite confirmation...'},
+    {emoji:'🧐', text:'Double-checking... triple-checking... okay fine.'},
+    {emoji:'📊', text:'Running statistical analysis on your correct answer...'},
+    {emoji:'🏆', text:'Minting your genius certificate...'},
+    {emoji:'🎓', text:'Notifying Oxford University of your achievement...'},
+    {emoji:'📰', text:'Writing headline: Local Person Knows What Day It Is...'},
+    {emoji:'✅', text:'Confirming you are smarter than the average Wednesday...'},
+  ];
+  const wrongResults = [
+    {title:'ABSOLUTELY NOT', emoji:'💀', msg:"That was impressively wrong. Like, hall-of-fame level wrong.", sub:"We called Elon. He is too busy ruining Twitter to fix your brain."},
+    {title:'WHAT IS TIME', emoji:'🌀', msg:"Were you dropped on a calendar as a child? Asking for a friend.", sub:"NASA has been notified. They are confused too."},
+    {title:'BRAVE ATTEMPT', emoji:'😂', msg:"Points for confidence. Zero points for accuracy. Net score: confidence.", sub:"Google Maps tried to find where you went wrong. It crashed."},
+    {title:'CLOSE-ISH', emoji:'🤡', msg:"Somewhere between completely wrong and still completely wrong.", sub:"The calendar is not mad. It is just disappointed."},
+    {title:'DELETE YOUR CALENDAR APP', emoji:'💥', msg:"Truly an achievement in wrongness. A monument to confusion.", sub:"ChatGPT also got it wrong so you are in good company."},
+  ];
+  const correctResults = [
+    {title:'GENIUS DETECTED', emoji:'🏆', msg:"You correctly identified what happens after today. You absolute legend.", sub:"Oxford is preparing your honorary degree in Calendar Sciences."},
+    {title:'UNBELIEVABLE', emoji:'🎓', msg:"You got it right. We are shocked. The days of the week are shocked.", sub:"This will go down in the group chat history forever."},
+    {title:'CALENDAR WHISPERER', emoji:'🔮', msg:"NASA confirmed. Satellites aligned. You are correct and powerful.", sub:"Please teach the others. They need it."},
+  ];
+
+  function initDayGame() {
+    const todayIdx = new Date().getDay();
+    document.getElementById('dp-today-name').textContent = days[todayIdx].toUpperCase();
+    const correct = days[(todayIdx+1)%7];
+    const opts = [...days].sort(() => Math.random()-0.5);
+    const aiPick = Math.random()<0.3 ? correct : days.filter(d=>d!==correct)[Math.floor(Math.random()*6)];
+    const reasons = [
+      'My quantum algorithm detected '+aiPick+' with 99.7% confidence.',
+      'After 14 satellites and Elon\'s gut feeling: '+aiPick+'.',
+      'The vibes suggest '+aiPick+'. Trust the process.',
+      'I ran 4 billion simulations. '+aiPick+' won. Barely.',
+      'My sources (a horoscope and a fortune cookie) say '+aiPick+'.',
+    ];
+    const aiEl = document.getElementById('dp-ai-choice');
+    aiEl.style.display = 'block';
+    document.getElementById('dp-ai-day').textContent = aiPick.toUpperCase();
+    document.getElementById('dp-ai-reason').textContent = reasons[Math.floor(Math.random()*reasons.length)];
+    const container = document.getElementById('dp-options');
+    container.innerHTML = '';
+    opts.forEach(day => {
+      const isCorrect = day === correct;
+      const btn = document.createElement('button');
+      btn.textContent = day;
+      btn.setAttribute('aria-label', 'Choose ' + day);
+      btn.style.cssText = 'background:linear-gradient(135deg,#1e1e3a,#16213e);border:2px solid #2a2a3a;color:white;font-family:Nunito,sans-serif;font-weight:900;font-size:1.05rem;padding:14px;border-radius:12px;cursor:pointer;transition:all 0.2s;width:100%;';
+      btn.onmouseover = ()=>{ btn.style.borderColor='#ff8800'; btn.style.transform='scale(1.04)'; };
+      btn.onmouseout = ()=>{ btn.style.borderColor='#2a2a3a'; btn.style.transform='scale(1)'; };
+      btn.onclick = () => answerDay(isCorrect, day, correct);
+      container.appendChild(btn);
+    });
+  }
+
+  function answerDay(isCorrect, chosen, correct) {
+    document.querySelectorAll('#dp-options button').forEach(b=>{ b.disabled=true; b.style.opacity='0.5'; });
+    runLoadingSequence(isCorrect ? correctSteps : wrongSteps, ()=>showDayResult(isCorrect, chosen, correct));
+  }
+
+  function runLoadingSequence(steps, onDone) {
+    const overlay = document.getElementById('dp-loading');
+    overlay.classList.add('active');
+    let i = 0;
+    const bar = document.getElementById('dp-load-bar');
+    const pctEl = document.getElementById('dp-load-pct');
+    const stepEl = document.getElementById('dp-load-step');
+    const emojiEl = document.getElementById('dp-load-emoji');
+    bar.style.width = '0%';
+    function next() {
+      if (i >= steps.length) { overlay.classList.remove('active'); onDone(); return; }
+      const s = steps[i];
+      emojiEl.textContent = s.emoji;
+      stepEl.textContent = s.text;
+      const p = Math.round((i+1)/steps.length*100);
+      bar.style.width = p+'%';
+      pctEl.textContent = p+'%';
+      i++;
+      setTimeout(next, 720 + Math.random()*480);
+    }
+    next();
+  }
+
+  function showDayResult(isCorrect, chosen, correct) {
+    const pool = isCorrect ? correctResults : wrongResults;
+    const r = pool[Math.floor(Math.random()*pool.length)];
+    document.getElementById('dp-result-emoji').textContent = r.emoji;
+    document.getElementById('dp-result-title').textContent = r.title;
+    document.getElementById('dp-result-title').style.color = isCorrect ? '#44ff88' : '#ff4500';
+    document.getElementById('dp-result-msg').textContent = isCorrect ? r.msg : 'You said '+chosen.toUpperCase()+'. The answer was '+correct.toUpperCase()+'. '+r.msg;
+    document.getElementById('dp-result-sub').textContent = r.sub;
+    document.getElementById('dp-result').classList.add('active');
+    if (isCorrect) launchConfetti();
+  }
+
+  function resetDayGame() {
+    document.getElementById('dp-result').classList.remove('active');
+    document.getElementById('dp-loading').classList.remove('active');
+    initDayGame();
+  }
+  function closeDpResult() { document.getElementById('dp-result').classList.remove('active'); }
+
+  // ── CONFETTI ──
+  function launchConfetti() {
+    const colors = ['#ff4500','#ffd700','#44ff88','#ff69b4','#00cfff','#ff8c00','#aa44ff'];
+    for (let i = 0; i < 90; i++) {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        const size = 6 + Math.random()*10;
+        el.style.cssText = `left:${Math.random()*100}vw;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>0.5?'50%':'2px'};animation-duration:${1.6+Math.random()*2}s;animation-delay:${Math.random()*0.4}s;`;
+        document.body.appendChild(el);
+        el.addEventListener('animationend', ()=>el.remove());
+      }, i * 18);
+    }
+  }
+
+  // ── INIT ──
+  initDayGame();
+</script>
+</body>
+</html>
